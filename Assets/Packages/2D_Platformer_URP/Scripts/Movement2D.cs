@@ -537,6 +537,12 @@ public class Movement2D : MonoBehaviour
         _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
         Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
 
+        Vector2 _posOffset = new(spriteTransform.right.x * ledgeClimbPosOffset.x,
+            spriteTransform.up.y * ledgeClimbPosOffset.y);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere((Vector2)transform.position + _posOffset, 0.05f);
+
 
     }
 
