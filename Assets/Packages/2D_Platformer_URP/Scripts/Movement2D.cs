@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class Movement2D : MonoBehaviour
 {
-    public GUIStyle mainHeaderStyle = new GUIStyle();
+    public GUIStyle mainHeaderStyle = new();
     Animator animator;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Rigidbody2D rb2;
     [SerializeField] CapsuleCollider2D capsuleCollider;
+    [SerializeField] AnimationClip climbAnim;
     Vector2 input;
     [HideInInspector] public float currentHorizontalSpeed;
     [HideInInspector] public float currentVerticalSpeed;
@@ -42,6 +43,14 @@ public class Movement2D : MonoBehaviour
     [SerializeField] bool resetDashOnGround;
     [SerializeField] bool resetDashOnWall;
     [SerializeField] bool airDash;
+    //[Header("-Dash Values")]
+    [Range(1f, 10f)]
+    [SerializeField] float airDashDistance = 3f;
+    [Range(0.1f, 10)]
+    [SerializeField] float airDashDuration = 0.3f;
+    [Range(0f, 1)]
+    [SerializeField] float airDashStopEffect = 0.5f;
+
     [SerializeField] bool dashCancelsGravity;
     [SerializeField] bool verticalDash;
     [SerializeField] bool horizontalDash;
@@ -178,7 +187,7 @@ public class Movement2D : MonoBehaviour
 
         if (transform.childCount == 0)
         {
-            GameObject _sprite = new GameObject();
+            GameObject _sprite = new();
             _sprite.name = "Sprite";
             _sprite.transform.SetParent(transform);
             _sprite.transform.localPosition = Vector3.zero;
@@ -193,6 +202,7 @@ public class Movement2D : MonoBehaviour
     private void Start()
     {
         fallClamp = fallSpeedClamp;
+        ledgeClimbDuration = climbAnim.length;
     }
 
     public enum PlayerStates
@@ -253,9 +263,9 @@ public class Movement2D : MonoBehaviour
 
     void HandlePlatformerMovement()
     {
+        CheckSideWall();
         GetPlatformerInput();
         DelayInputOnWall();
-        CheckSideWall();
         DoDash();
         CheckCeil();
         CheckGround();
@@ -312,8 +322,8 @@ public class Movement2D : MonoBehaviour
         transform.position = spriteTransform.position;
         Vector2 _posOffset = new (spriteTransform.right.x * ledgeClimbPosOffset.x,
             spriteTransform.up.y * ledgeClimbPosOffset.y);
-        animator.Play("ProtoIdle");
-        //animator.SetBool("ClimbLedge", isClimbingLedge);
+        //animator.Play("ProtoIdle");
+        //animator.SetBool("OnLedge", false);
         transform.position = (Vector2)transform.position + _posOffset;
 
 
@@ -475,75 +485,6 @@ public class Movement2D : MonoBehaviour
             
         }
         Jump();
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        if (isGrounded)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckCenter - (Vector2)transform.up * groundCheckRayDistance, groundCheckCircleRadius);
-
-        if (onCeil)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawWireSphere((Vector2)transform.position + ceilCheckCenter + (Vector2)transform.up * ceilCheckRayDistance, ceilCheckCircleRadius);
-
-
-        if (rightWallHit)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(transform.position,transform.right * wallCheckRayDistance);
-
-        if (leftWallHit)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawRay(transform.position, -transform.right * wallCheckRayDistance);
-        Vector2 _ledgePos;
-        if (isLedge)
-        {
-            Gizmos.color = Color.green;
-            _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
-            Vector2 _ledgeGroundCheckCenter = _ledgePos + (Vector2)(spriteTransform.right * ledgeCheckDistance);
-
-            Gizmos.DrawRay(_ledgeGroundCheckCenter, Vector2.down * ledgeCheckDistance);
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-
-        _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
-        Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
-
-        Vector2 _posOffset = new(spriteTransform.right.x * ledgeClimbPosOffset.x,
-            spriteTransform.up.y * ledgeClimbPosOffset.y);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere((Vector2)transform.position + _posOffset, 0.05f);
-
-
     }
 
     void CheckCeil()
@@ -859,5 +800,74 @@ public class Movement2D : MonoBehaviour
     void MovePlayer()
     {
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (isGrounded)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckCenter - (Vector2)transform.up * groundCheckRayDistance, groundCheckCircleRadius);
+
+        if (onCeil)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawWireSphere((Vector2)transform.position + ceilCheckCenter + (Vector2)transform.up * ceilCheckRayDistance, ceilCheckCircleRadius);
+
+
+        if (rightWallHit)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawRay(transform.position, transform.right * wallCheckRayDistance);
+
+        if (leftWallHit)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawRay(transform.position, -transform.right * wallCheckRayDistance);
+        Vector2 _ledgePos;
+        if (isLedge)
+        {
+            Gizmos.color = Color.green;
+            _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
+            Vector2 _ledgeGroundCheckCenter = _ledgePos + (Vector2)(spriteTransform.right * ledgeCheckDistance);
+
+            Gizmos.DrawRay(_ledgeGroundCheckCenter, Vector2.down * ledgeCheckDistance);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
+        Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
+
+        Vector2 _posOffset = new(spriteTransform.right.x * ledgeClimbPosOffset.x,
+            spriteTransform.up.y * ledgeClimbPosOffset.y);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere((Vector2)transform.position + _posOffset, 0.05f);
+
+
     }
 }

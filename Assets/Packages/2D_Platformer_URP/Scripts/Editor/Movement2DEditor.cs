@@ -33,6 +33,7 @@ public class Movement2DEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("spriteTransform"), new GUIContent("Sprite Transform", "Transform of the sprite"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("rb2"), new GUIContent("Rigidbody2D", "Rigidbody2D component"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("capsuleCollider"), new GUIContent("Capsule Collider", "Capsule Collider component"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("climbAnim"), new GUIContent("Climb clip animation", "Climb clip animation"));
 
         // SPEED HEADER
         EditorGUILayout.Space(headerTopSpace);
@@ -85,8 +86,20 @@ public class Movement2DEditor : Editor
             
             EditorGUILayout.PropertyField(serializedObject.FindProperty("resetDashOnGround"), new GUIContent("Reset Dash On Ground", "Determines whether the ability to dash is reset when the player touches the ground. If enabled, the player can dash again upon landing on the ground."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("resetDashOnWall"), new GUIContent("Reset Dash On Wall", "Determines if the dash ability resets upon colliding with a wall. When activated, the player can execute another dash after hitting a wall."));
+            
+            EditorGUILayout.Space();
 
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("airDash"), new GUIContent("Air Dash", "Allow dash while in the air"));
+            SerializedProperty _airDash = serializedObject.FindProperty("airDash");
+            EditorGUILayout.PropertyField(_airDash, new GUIContent("Air Dash", "Allow dash while in the air"));
+
+            if (_airDash.boolValue)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("airDashDistance"), new GUIContent("Air dash Distance", "Distance covered by dash."));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("airDashDuration"), new GUIContent("Air dash duration", "Duration of the dash"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("airDashStopEffect"), new GUIContent("Air dash Stop Effect", "The speed effect applied when the dash is finished. A value of 0 will completely stop the player, while a value of 1 will maintain the dash velocity.\""));
+            }
+            EditorGUILayout.Space();
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashCancelsGravity"), new GUIContent("Dash Cancels Gravity", "Controls if dashing stops gravity. When enabled, gravity won't pull you down while dashing."));
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("verticalDash"), new GUIContent("Vertical Dash", "Enables upward or downward dashes."));
