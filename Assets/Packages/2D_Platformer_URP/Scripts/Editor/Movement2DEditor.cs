@@ -8,6 +8,7 @@ public class Movement2DEditor : Editor
     float headerBottomSpace = 5f;
 
     bool _jumpDebug;
+    bool _dashDebug;
     bool _wallSlideDebug = false;
     bool _speedDebug = false;
     bool _ledgeDebug;
@@ -71,7 +72,7 @@ public class Movement2DEditor : Editor
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashButton"), new GUIContent("Dash Button", "Button for dashing"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("cancelDashOnWallHit"), new GUIContent("Cancel Dash On Wall Hit", "Whether dash should be canceled upon hitting a wall."));
- 
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashDistance"), new GUIContent("Dash Distance", "Distance covered by dash."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashDuration"), new GUIContent("Dash Duration", "Duration of the dash"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashStopEffect"), new GUIContent("Dash Stop Effect", "The speed effect applied when the dash is finished. A value of 0 will completely stop the player, while a value of 1 will maintain the dash velocity.\""));
@@ -79,14 +80,13 @@ public class Movement2DEditor : Editor
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashCooldown"), new GUIContent("Dash Cooldown", "Cooldown for dashing"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("dashCoolTimer"), new GUIContent("Dash Cool Timer", "Timer for dash cooldown"));
 
             EditorGUILayout.Space();
 
-            
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("resetDashOnGround"), new GUIContent("Reset Dash On Ground", "Determines whether the ability to dash is reset when the player touches the ground. If enabled, the player can dash again upon landing on the ground."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("resetDashOnWall"), new GUIContent("Reset Dash On Wall", "Determines if the dash ability resets upon colliding with a wall. When activated, the player can execute another dash after hitting a wall."));
-            
+
             EditorGUILayout.Space();
 
             SerializedProperty _airDash = serializedObject.FindProperty("airDash");
@@ -104,7 +104,7 @@ public class Movement2DEditor : Editor
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("verticalDash"), new GUIContent("Vertical Dash", "Enables upward or downward dashes."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("horizontalDash"), new GUIContent("Horizontal Dash", "Enables dashes to the left or right."));
-     
+
 
             EditorGUILayout.Space();
 
@@ -117,6 +117,17 @@ public class Movement2DEditor : Editor
                 movement2D.GetColliderSize();
             }
 
+            _dashDebug = EditorGUILayout.Foldout(_dashDebug, "Debug");
+            if (_dashDebug)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("dashCoolTimer"), new GUIContent("Dash Cooldown Timer", "Timer for dash cooldown"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("dashingTimer"), new GUIContent("Dash Timer", "Timer for dash animation time"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("dashToleranceTimer"), new GUIContent("Dash Tolerance Timer", "Timer for dash tolerance"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("canDash"), new GUIContent("Can Dash", "Can currently dash"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("isAirDashing"), new GUIContent("Is Air Dashing", "Is currently dashing in the air"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("isPressedDashButton"), new GUIContent("Is Pressed Dash Button", "Is currently pressing dash button"));
+
+            }
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();

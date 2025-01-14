@@ -59,8 +59,10 @@ public class Movement2D : MonoBehaviour
     [Space]
     [SerializeField] float dashCooldown = 0.5f;
     [SerializeField] float dashCoolTimer;
+    [SerializeField] float dashToleranceTimer;
 
-    bool canDash;
+    [SerializeField] bool canDash;
+    [SerializeField] bool isAirDashing = false;
     Vector2 defaultColliderOffset;
     Vector2 defaulColliderSize;
 
@@ -68,7 +70,7 @@ public class Movement2D : MonoBehaviour
     //DASH INFO
     [HideInInspector] public bool isDashing;
     float dashSpeed;
-    float dashingTimer;
+    [SerializeField] float dashingTimer;
 
     [Space]
     //[Header("WALL JUMP")]
@@ -171,6 +173,7 @@ public class Movement2D : MonoBehaviour
     public bool hitWall;
     public bool isJumped;//to check if the player is on air because of jumping or falling
     public bool isPressedJumpButton;
+    public bool isPressedDashButton;
 
     float onAirControlMultiplier;
 
@@ -249,7 +252,8 @@ public class Movement2D : MonoBehaviour
     private void Update()
     {
         HandlePlatformerMovement();
-
+        //Debug.Log("dashingTimer : " + dashingTimer);
+        //Debug.Log("dashCoolTimer : " + dashCoolTimer);
     }
 
     private void FixedUpdate()
@@ -271,11 +275,14 @@ public class Movement2D : MonoBehaviour
         CheckGround();
         FlipThePlayer();
         CountDownJumpTolerance();
+        CountDownDashTolerance();
         SwitchState();
         CheckLedge();
         DashCooldownCounter();
         
     }
+
+    #region Dash
     void DoDash()
     {
         if (isDashing)
@@ -283,6 +290,7 @@ public class Movement2D : MonoBehaviour
             dashingTimer -= Time.deltaTime;
             if (dashingTimer <= 0 && ( (isGrounded && !onCeil) || !isGrounded) )
             {
+                Debug.Log("CANCEL1");
                 CancelDash();
 
             }
@@ -292,9 +300,120 @@ public class Movement2D : MonoBehaviour
     {
         if (dashCoolTimer > 0)
         {
-            dashCoolTimer -= Time.fixedDeltaTime;
+            dashCoolTimer -= Time.deltaTime;
         }
     }
+
+    void CountDownDashTolerance()
+    {
+        if (isPressedDashButton)
+        {
+            dashToleranceTimer -= Time.deltaTime;
+            if (dashToleranceTimer <= 0)
+            {
+                isPressedDashButton = false;
+            }
+        }
+    }
+
+    void CancelDash()
+    {
+        
+        if (isDashing)
+        {
+            isDashing = false;
+            
+            if (!isAirDashing)
+            {
+                dashCoolTimer = dashCooldown;
+                currentHorizontalSpeed *= dashStopEffect;
+                currentVerticalSpeed *= dashStopEffect;
+            }
+            else
+            {
+                dashCoolTimer = 0f;
+                currentHorizontalSpeed *= airDashStopEffect;
+                currentVerticalSpeed *= airDashStopEffect;
+            }
+            isAirDashing = false;
+            capsuleCollider.offset = defaultColliderOffset;
+            capsuleCollider.size = defaulColliderSize;
+        }
+    }
+
+    void DashPressed()
+    {
+
+        if (!isPressedDashButton && !isGrounded && Dash)
+        {
+            isPressedDashButton = true;
+            dashToleranceTimer = jumpBuffer;
+        }
+
+        Debug.Log("isDashing : " + isDashing + " --- " +
+            "input.x : " + input.x + " --- " +
+            "isAirDashing : " + isAirDashing + " --- " +
+            "isPressedDashButton : " + isPressedDashButton + " --- " +
+            "dashToleranceTimer : " + dashToleranceTimer + " --- " +
+            "dashingTimer : " + dashingTimer + " --- " +
+            "dashCoolTimer : " + dashCoolTimer);
+
+        if ((canDash || (isPressedDashButton && isGrounded)) && !isDashing && Dash && ((horizontalDash && input.x != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
+        {
+
+            if (!isGrounded)
+            {
+                canDash = false;
+            }
+            isAirDashing = !isGrounded && airDash;
+            isDashing = true;
+            isPressedDashButton = false;
+
+            if (!isAirDashing)
+            {
+                dashSpeed = (dashDistance) / dashDuration;
+                dashingTimer = dashDuration;
+            }
+            else
+            {
+                dashSpeed = (airDashDistance) / airDashDuration;
+                dashingTimer = airDashDuration;
+            }
+
+            Vector2 _dir = Vector2.zero;
+
+            if (horizontalDash && !verticalDash)
+            {
+                _dir.x = input.x;
+                currentHorizontalSpeed = dashSpeed * _dir.x;
+                currentVerticalSpeed = 0f;
+
+
+            }
+            else if (verticalDash && !horizontalDash)
+            {
+                _dir.y = input.y;
+
+                currentHorizontalSpeed = dashSpeed * _dir.x;
+                currentVerticalSpeed = dashSpeed * _dir.y;
+            }
+            else if (horizontalDash && verticalDash)
+            {
+                _dir = input.normalized;
+
+                currentHorizontalSpeed = dashSpeed * _dir.x;
+                currentVerticalSpeed = dashSpeed * _dir.y;
+            }
+
+            capsuleCollider.offset = dashColliderOffset;
+            capsuleCollider.size = dashColliderScale;
+
+
+        }
+    }
+    #endregion
+
+    #region Ledge
     void ClimbLedge()
     {
         //transform.GetChild(0).GetComponent<Animator>().Play("ProtoLedgeClimb");
@@ -378,93 +497,10 @@ public class Movement2D : MonoBehaviour
             }
 
         }
-
-
-
     }
+    #endregion
 
-    void CancelDash()
-    {
-        if (isDashing)
-        {
-            isDashing = false;
-            dashCoolTimer = dashCooldown;
-            currentHorizontalSpeed *= dashStopEffect;
-            currentVerticalSpeed *= dashStopEffect;
-
-            capsuleCollider.offset = defaultColliderOffset;
-            capsuleCollider.size = defaulColliderSize;
-        }
-    }
-
-    void DashPressed()
-    {
-        if ( canDash && !isDashing && Dash && ( (horizontalDash && input.x != 0) || (verticalDash && input.y != 0) ) && dashCoolTimer <= 0f)
-        {
-
-            if (!isGrounded) 
-            {
-                canDash = false;
-
-            }
-            isDashing = true;
-            dashSpeed = (dashDistance) / dashDuration;
-            dashingTimer = dashDuration;
-
-            Vector2 _dir = Vector2.zero;
-
-            if (horizontalDash && !verticalDash)
-            {
-                _dir.x = input.x;
-                currentHorizontalSpeed = dashSpeed * _dir.x;
-                currentVerticalSpeed = 0f;
-                
-
-            }
-            else if (verticalDash && !horizontalDash)
-            {
-                _dir.y = input.y;
-
-                currentHorizontalSpeed = dashSpeed * _dir.x;
-                currentVerticalSpeed = dashSpeed * _dir.y;
-            }
-            else if (horizontalDash && verticalDash) 
-            {
-                _dir = input.normalized;
-
-                currentHorizontalSpeed = dashSpeed * _dir.x;
-                currentVerticalSpeed = dashSpeed * _dir.y;
-            }
-
-
-            if (isGrounded)
-            {
-                capsuleCollider.offset = dashColliderOffset;
-                capsuleCollider.size = dashColliderScale;
-
-            }
-
-            
-        }
-    }
-
-    public void GetColliderSize()
-    {
-        dashColliderScale = capsuleCollider.size;
-        dashColliderOffset = capsuleCollider.offset;
-        print("Values Saved");
-    }
-
-    void DelayInputOnWall()
-    {
-        if (isSlidingOnWall)
-        {
-            inputDelayTimer = (input.x == 0) ? inputDelay : inputDelayTimer - Time.deltaTime;
-            if (inputDelayTimer > 0f) input.x = 0;
-        }
-
-    }
-
+    #region Input
     void GetPlatformerInput()
     {
         input.x = Input.GetAxisRaw("Horizontal");
@@ -484,9 +520,20 @@ public class Movement2D : MonoBehaviour
             DashPressed();
             
         }
+        /* ICICICICICICICICICICCI
+         * 
+         * Create Dash method call at the end with input from DashPressed
+         * 
+         * 
+         * 
+         * 
+         */
+
         Jump();
     }
+    #endregion
 
+    #region Ceiling
     void CheckCeil()
     {
         RaycastHit2D hit2D = Physics2D.CircleCast((Vector2)transform.position + ceilCheckCenter,ceilCheckCircleRadius,transform.up,ceilCheckRayDistance,ceilLayer);
@@ -521,7 +568,9 @@ public class Movement2D : MonoBehaviour
         EditorUtility.SetDirty(this);
 #endif
     }
+    #endregion
 
+    #region Wall
     void CheckSideWall()
     {
         rightWallHit = Physics2D.Raycast(transform.position,transform.right,wallCheckRayDistance,wallCheckLayer);
@@ -546,8 +595,9 @@ public class Movement2D : MonoBehaviour
                 
             }
 
-            if (cancelDashOnWallHit)
+            if (cancelDashOnWallHit && isDashing)
             {
+                Debug.Log("CANCEL2");
                 CancelDash();
             }
         }
@@ -579,8 +629,18 @@ public class Movement2D : MonoBehaviour
             fallClamp = fallSpeedClamp;
         }
     }
+    void DelayInputOnWall()
+    {
+        if (isSlidingOnWall)
+        {
+            inputDelayTimer = (input.x == 0) ? inputDelay : inputDelayTimer - Time.deltaTime;
+            if (inputDelayTimer > 0f) input.x = 0;
+        }
 
-   
+    }
+    #endregion
+
+    #region Ground
     void CheckGround()
     {
         RaycastHit2D hit2D = Physics2D.CircleCast((Vector2)transform.position + groundCheckCenter, groundCheckCircleRadius, -transform.up, groundCheckRayDistance, groundLayer);
@@ -624,6 +684,7 @@ public class Movement2D : MonoBehaviour
                     fallToleranceTimer = coyoteTime;
                     if (!dashCancelsGravity)
                     {
+                        Debug.Log("CANCEL3");
                         CancelDash();
                     }
                 }
@@ -663,7 +724,9 @@ public class Movement2D : MonoBehaviour
         EditorUtility.SetDirty(this);
 #endif
     }
+    #endregion
 
+    #region Jump
     void PressJumpButton()
     {
         if (!isDashing)
@@ -734,7 +797,9 @@ public class Movement2D : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Move
     void UpdatePlatformerSpeed()
     {
         if (!isDashing) 
@@ -760,7 +825,7 @@ public class Movement2D : MonoBehaviour
         }
         
 
-        if (!isGrounded && (!isDashing || (!dashCancelsGravity && isDashing)))
+        if (!isGrounded && (!isDashing || (!dashCancelsGravity && isDashing && !isAirDashing)))
         {
             if (currentVerticalSpeed >= 0)
             {
@@ -801,7 +866,14 @@ public class Movement2D : MonoBehaviour
     {
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }
+    #endregion
 
+    public void GetColliderSize()
+    {
+        dashColliderScale = capsuleCollider.size;
+        dashColliderOffset = capsuleCollider.offset;
+        print("Values Saved");
+    }
 
     private void OnDrawGizmos()
     {

@@ -1868,6 +1868,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: coyoteTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: dashCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: dashDistance
       value: 2.5
       objectReference: {fileID: 0}
@@ -1884,6 +1892,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: airDashDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: airDashDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: airDashStopEffect
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: resetDashOnGround
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: dashCancelsGravity
       value: 0
       objectReference: {fileID: 0}
@@ -1892,12 +1916,24 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: ledgeClimbDuration
+      value: 0.333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: ledgeClimbPosOffset.x
       value: 0.504
       objectReference: {fileID: 0}
     - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: ledgeClimbPosOffset.y
       value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: canWallJumpWhileClimbing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: variableJumpHeightOnWallJump
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6008140509056091998, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: m_LocalPosition.x
