@@ -170,6 +170,12 @@ public class Movement2DEditor : Editor
         EditorGUILayout.Space(headerBottomSpace);
 
         EditorGUILayout.BeginVertical("box");
+        SerializedProperty _doubleJump = serializedObject.FindProperty("doubleJump");
+        EditorGUILayout.PropertyField(_doubleJump, new GUIContent("Can Double Jump", ""));
+        if (_doubleJump.boolValue)
+        {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("numberJumps"), new GUIContent("Number Of Jumps InAir", "How many jumps can be done in air"));
+        }
         EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpHight"), new GUIContent("Jump Height", "Controls how high the player can jump."));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpUpAcceleration"), new GUIContent("Upward Jump Deceleration", "Controls how quickly the player's upward movement decelerates during jumps."));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpDownAcceleration"), new GUIContent("Downward Jump Acceleration", "Increases the player's falling speed while descending during jumps."));
@@ -190,6 +196,7 @@ public class Movement2DEditor : Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("canJump"), new GUIContent("Can Jump", "Can currently jump"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("isJumped"), new GUIContent("Is Jumped", "Is currently jumping"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("isPressedJumpButton"), new GUIContent("Is Pressed Jump Button", "Is currently pressing jump button"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpCounter"), new GUIContent("Jump Counter", "How many jump remaining"));
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();

@@ -104,6 +104,9 @@ public class Movement2D : MonoBehaviour
     [SerializeField] float jumpUpDuration;
     [SerializeField] bool isNormalJumped;
     [SerializeField] bool isWallJumped;
+    [SerializeField] bool doubleJump;
+    [SerializeField] int numberJumps;
+    [SerializeField] int jumpCounter;
 
     [Space]
     //[Header("----Jump Adjustments----")]
@@ -252,13 +255,10 @@ public class Movement2D : MonoBehaviour
     private void Update()
     {
         HandlePlatformerMovement();
-        //Debug.Log("dashingTimer : " + dashingTimer);
-        //Debug.Log("dashCoolTimer : " + dashCoolTimer);
     }
 
     private void FixedUpdate()
     {
-
         UpdatePlatformerSpeed();
         MovePlayer();
         LedgeClimbCountdown();
@@ -268,22 +268,48 @@ public class Movement2D : MonoBehaviour
     void HandlePlatformerMovement()
     {
         CheckSideWall();
-        GetPlatformerInput();
-        DelayInputOnWall();
-        DoDash();
         CheckCeil();
         CheckGround();
+        CheckLedge();
+        GetPlatformerInput();
+        DelayInputOnWall();
+        TimerDash();
         FlipThePlayer();
         CountDownJumpTolerance();
         CountDownDashTolerance();
         SwitchState();
-        CheckLedge();
         DashCooldownCounter();
         
     }
 
+    #region Input
+    void GetPlatformerInput()
+    {
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(jumpButton))
+        {
+            PressJumpButton();
+
+        }
+        if (Input.GetKeyUp(jumpButton))
+        {
+            isHoldingJumpButton = false;
+        }
+        if (Input.GetKeyDown(dashButton))
+        {
+            DashPressed();
+
+        }
+
+        DoDash();
+        Jump();
+    }
+    #endregion
+
     #region Dash
-    void DoDash()
+    void TimerDash()
     {
         if (isDashing)
         {
@@ -344,21 +370,16 @@ public class Movement2D : MonoBehaviour
     void DashPressed()
     {
 
-        if (!isPressedDashButton && !isGrounded && Dash)
+        if (!isPressedDashButton && Dash)
         {
             isPressedDashButton = true;
             dashToleranceTimer = jumpBuffer;
         }
+    }
 
-        Debug.Log("isDashing : " + isDashing + " --- " +
-            "input.x : " + input.x + " --- " +
-            "isAirDashing : " + isAirDashing + " --- " +
-            "isPressedDashButton : " + isPressedDashButton + " --- " +
-            "dashToleranceTimer : " + dashToleranceTimer + " --- " +
-            "dashingTimer : " + dashingTimer + " --- " +
-            "dashCoolTimer : " + dashCoolTimer);
+    void DoDash() { 
 
-        if ((canDash || (isPressedDashButton && isGrounded)) && !isDashing && Dash && ((horizontalDash && input.x != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
+        if ((canDash && isPressedDashButton) && !isDashing && Dash && ((horizontalDash && input.x != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
         {
 
             if (!isGrounded)
@@ -437,12 +458,9 @@ public class Movement2D : MonoBehaviour
     public void UpdateLedgeClimbPosition()
     {
         isClimbingLedge = false;
-        //transform.GetChild(0).GetComponent<Animator>().Play("ProtoIdle");
         transform.position = spriteTransform.position;
         Vector2 _posOffset = new (spriteTransform.right.x * ledgeClimbPosOffset.x,
             spriteTransform.up.y * ledgeClimbPosOffset.y);
-        //animator.Play("ProtoIdle");
-        //animator.SetBool("OnLedge", false);
         transform.position = (Vector2)transform.position + _posOffset;
 
 
@@ -470,10 +488,12 @@ public class Movement2D : MonoBehaviour
                     if (!isLedge)
                     {
                         ledgePosition = (Vector2)transform.position - new Vector2(0f, _hit.distance - 0.1f);
-                        isLedge = true; 
+                        isLedge = true;
+                        Debug.Log("FUCK");
                         currentVerticalSpeed = 0f;
                         fallClamp = 0f;
-                        rb2.MovePosition(ledgePosition);
+                        transform.position= ledgePosition;
+                        //rb2.MovePosition(ledgePosition);
                         if (autoClimbLedge)
                         {
                             ClimbLedge();
@@ -497,39 +517,6 @@ public class Movement2D : MonoBehaviour
             }
 
         }
-    }
-    #endregion
-
-    #region Input
-    void GetPlatformerInput()
-    {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-        
-        if (Input.GetKeyDown(jumpButton))
-        {
-            PressJumpButton();
-
-        }
-        if (Input.GetKeyUp(jumpButton))
-        {
-            isHoldingJumpButton = false;
-        }
-        if (Input.GetKeyDown(dashButton))
-        {
-            DashPressed();
-            
-        }
-        /* ICICICICICICICICICICCI
-         * 
-         * Create Dash method call at the end with input from DashPressed
-         * 
-         * 
-         * 
-         * 
-         */
-
-        Jump();
     }
     #endregion
 
@@ -619,6 +606,11 @@ public class Movement2D : MonoBehaviour
         if (!isSlidingOnWall && _sliding)
         {
             isSlidingOnWall = true;
+            if (doubleJump)
+            {
+                canJump = true;
+                jumpCounter = numberJumps;
+            }
             isNormalJumped = false;
             isWallJumped = false;
             fallClamp = wallSlideSpeed;
@@ -655,6 +647,10 @@ public class Movement2D : MonoBehaviour
                 isNormalJumped = false;
                 fallClamp = fallSpeedClamp;
                 canJump = true;
+                if (doubleJump)
+                {
+                    jumpCounter = numberJumps;
+                }
                 canDash = resetDashOnGround;
                 onAirControlMultiplier = 1;
                 SlideOnWall(false);
@@ -665,6 +661,7 @@ public class Movement2D : MonoBehaviour
                     isJumped = false;
                 }
             }
+
             if (resetDashOnGround)
             {
                 canDash = true;
@@ -684,7 +681,6 @@ public class Movement2D : MonoBehaviour
                     fallToleranceTimer = coyoteTime;
                     if (!dashCancelsGravity)
                     {
-                        Debug.Log("CANCEL3");
                         CancelDash();
                     }
                 }
@@ -696,14 +692,25 @@ public class Movement2D : MonoBehaviour
         if (!isGrounded)
         {
 
-            fallToleranceTimer -= Time.deltaTime;
+            
             if (fallToleranceTimer <= 0)
             {
                 if (!airDash)
                 {
                     canDash = false;
                 }
-                canJump = false;
+                if (!doubleJump)
+                {
+                    canJump = false;
+                }
+                else if (jumpCounter == numberJumps && !isSlidingOnWall)
+                {
+                    jumpCounter--;
+                }
+            }
+            else
+            {
+                fallToleranceTimer -= Time.deltaTime;
             }
         }
     }
@@ -749,28 +756,42 @@ public class Movement2D : MonoBehaviour
             }
             if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped))
             {
+                Debug.Log("jumprelease");
                 currentVerticalSpeed *= jumpReleaseEffect;
                 isForcingJump = false;
             }
 
         }
 
-        if (canJump && isPressedJumpButton)
+        if (canJump && isPressedJumpButton && !isSlidingOnWall)
         {
+            Debug.Log("NORMAL");
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
             jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
 
             isJumped = true;
-            canJump = false;
+            if (doubleJump && jumpCounter > 0)
+            {
+                jumpCounter--;
+            }
+            else 
+            {
+                canJump = false;
+            }
             isPressedJumpButton = false;
             currentVerticalSpeed = jumpVelocity;
             isNormalJumped = true;
         }
         if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
         {
+            
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
+            Debug.Log("WALL : " + isClimbingLedge);
             isJumped = true;
-            canJump = false;
+            if (!doubleJump)
+            {
+                canJump = false;
+            }
             isWallJumped = true;
             isPressedJumpButton = false;
             onAirControlMultiplier = wallJumpDecelerationFactor;
@@ -783,6 +804,8 @@ public class Movement2D : MonoBehaviour
             {
                 currentHorizontalSpeed = -jumpVelocity * wallJumpVelocity.x;
             }
+            Debug.Log("VELOCITY VERT : " + currentVerticalSpeed);
+            Debug.Log("VELOCITY HOR : " + currentHorizontalSpeed);
         }
     }
 
@@ -864,6 +887,8 @@ public class Movement2D : MonoBehaviour
 
     void MovePlayer()
     {
+        Debug.Log("MOVE VERT : " + currentVerticalSpeed);
+        //Debug.Log("MOVE HOR : " + currentHorizontalSpeed);
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }
     #endregion
@@ -921,10 +946,7 @@ public class Movement2D : MonoBehaviour
         if (isLedge)
         {
             Gizmos.color = Color.green;
-            _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
-            Vector2 _ledgeGroundCheckCenter = _ledgePos + (Vector2)(spriteTransform.right * ledgeCheckDistance);
-
-            Gizmos.DrawRay(_ledgeGroundCheckCenter, Vector2.down * ledgeCheckDistance);
+            
         }
         else
         {
@@ -933,6 +955,9 @@ public class Movement2D : MonoBehaviour
 
         _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
         Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
+        Vector2 _ledgeGroundCheckCenter = _ledgePos + (Vector2)(spriteTransform.right * ledgeCheckDistance);
+
+        Gizmos.DrawRay(_ledgeGroundCheckCenter, Vector2.down * ledgeCheckDistance);
 
         Vector2 _posOffset = new(spriteTransform.right.x * ledgeClimbPosOffset.x,
             spriteTransform.up.y * ledgeClimbPosOffset.y);

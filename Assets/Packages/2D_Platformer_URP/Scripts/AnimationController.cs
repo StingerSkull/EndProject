@@ -12,10 +12,11 @@ public class AnimationController : MonoBehaviour
     void Update()
     {
         animator.SetBool("Dashing", movement.isDashing);
+        animator.SetBool("WallJump", movement.WallJump);
         animator.SetFloat("JumpSpeed", movement.currentVerticalSpeed);
         animator.SetFloat("MovementSpeed", Mathf.Abs(movement.currentHorizontalSpeed));
         animator.SetBool("Grounded",movement.isGrounded);
-        animator.SetBool("OnWallHit",movement.hitWall && movement.WallJump);
+        animator.SetBool("OnWallHit",movement.hitWall);
         animator.SetBool("OnLedge",movement.isLedge);
         animator.SetBool("ClimbLedge", movement.isClimbingLedge);
         
