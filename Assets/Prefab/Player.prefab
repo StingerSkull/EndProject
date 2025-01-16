@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3516429712867118096}
   - component: {fileID: 2995643861944350036}
   - component: {fileID: 6822618269659425442}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: DustJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 8229408269421088889}
   - component: {fileID: 9148178792972053937}
   - component: {fileID: 8603827925250911012}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4928,6 +4928,7 @@ Transform:
   m_Children:
   - {fileID: 6803101939834728267}
   - {fileID: 3516429712867118096}
+  - {fileID: 2388719934747745927}
   m_Father: {fileID: 6008140509056091998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9148178792972053937
@@ -5018,7 +5019,7 @@ GameObject:
   - component: {fileID: 6803101939834728267}
   - component: {fileID: 766056747382098875}
   - component: {fileID: 339415397912202155}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9845,6 +9846,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8592912852885590222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2388719934747745927}
+  m_Layer: 3
+  m_Name: Caster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2388719934747745927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8592912852885590222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.382, y: -0.181, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8229408269421088889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8926573737668168927
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,7 +9891,8 @@ GameObject:
   - component: {fileID: 5246789730832332084}
   - component: {fileID: 3535953447396953299}
   - component: {fileID: 6685666831266777143}
-  m_Layer: 2
+  - component: {fileID: 4522807899081119045}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10157,3 +10190,18 @@ MonoBehaviour:
   CrossColor: {r: 1, g: 1, b: 1, a: 1}
   crossSize: 0.45
   centerPosition: {x: 24.703728, y: 2.8728344, z: 0}
+--- !u!114 &4522807899081119045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926573737668168927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab1dceee66e8ee41a3c2ce7fe138941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabFirstSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
+  prefabSecondSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
+  sprite: {fileID: 3756297859674558467}

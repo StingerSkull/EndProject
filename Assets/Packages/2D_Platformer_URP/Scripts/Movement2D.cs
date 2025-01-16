@@ -316,7 +316,6 @@ public class Movement2D : MonoBehaviour
             dashingTimer -= Time.deltaTime;
             if (dashingTimer <= 0 && ( (isGrounded && !onCeil) || !isGrounded) )
             {
-                Debug.Log("CANCEL1");
                 CancelDash();
 
             }
@@ -489,7 +488,6 @@ public class Movement2D : MonoBehaviour
                     {
                         ledgePosition = (Vector2)transform.position - new Vector2(0f, _hit.distance - 0.1f);
                         isLedge = true;
-                        Debug.Log("FUCK");
                         currentVerticalSpeed = 0f;
                         fallClamp = 0f;
                         transform.position= ledgePosition;
@@ -584,7 +582,6 @@ public class Movement2D : MonoBehaviour
 
             if (cancelDashOnWallHit && isDashing)
             {
-                Debug.Log("CANCEL2");
                 CancelDash();
             }
         }
@@ -736,14 +733,15 @@ public class Movement2D : MonoBehaviour
     #region Jump
     void PressJumpButton()
     {
-        if (!isDashing)
-        {
-            isHoldingJumpButton = true;
+        //if (!isDashing)
+        //{
+        
+        isHoldingJumpButton = true;
             isPressedJumpButton = true;
             isForcingJump = true;
             jumpHoldTimer = variableJumpHeightDuration * jumpUpDuration;
             jumpToleranceTimer = jumpBuffer;
-        }
+        //}
     }
     void Jump()
     {
@@ -756,7 +754,6 @@ public class Movement2D : MonoBehaviour
             }
             if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped))
             {
-                Debug.Log("jumprelease");
                 currentVerticalSpeed *= jumpReleaseEffect;
                 isForcingJump = false;
             }
@@ -765,7 +762,7 @@ public class Movement2D : MonoBehaviour
 
         if (canJump && isPressedJumpButton && !isSlidingOnWall)
         {
-            Debug.Log("NORMAL");
+            CancelDash();
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
             jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
 
@@ -782,11 +779,10 @@ public class Movement2D : MonoBehaviour
             currentVerticalSpeed = jumpVelocity;
             isNormalJumped = true;
         }
-        if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
+        else if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
         {
-            
+            CancelDash();
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
-            Debug.Log("WALL : " + isClimbingLedge);
             isJumped = true;
             if (!doubleJump)
             {
@@ -804,8 +800,6 @@ public class Movement2D : MonoBehaviour
             {
                 currentHorizontalSpeed = -jumpVelocity * wallJumpVelocity.x;
             }
-            Debug.Log("VELOCITY VERT : " + currentVerticalSpeed);
-            Debug.Log("VELOCITY HOR : " + currentHorizontalSpeed);
         }
     }
 
@@ -887,8 +881,6 @@ public class Movement2D : MonoBehaviour
 
     void MovePlayer()
     {
-        Debug.Log("MOVE VERT : " + currentVerticalSpeed);
-        //Debug.Log("MOVE HOR : " + currentHorizontalSpeed);
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }
     #endregion
