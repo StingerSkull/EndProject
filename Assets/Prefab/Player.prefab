@@ -4906,6 +4906,7 @@ GameObject:
   - component: {fileID: 8229408269421088889}
   - component: {fileID: 9148178792972053937}
   - component: {fileID: 8603827925250911012}
+  - component: {fileID: 5645229320595275780}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -5008,6 +5009,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5645229320595275780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756297859674558467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30ade0715399b04894d28ee60428986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4522807899081119045}
+        m_TargetAssemblyTypeName: Casting, Assembly-CSharp
+        m_MethodName: SetIsCasting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5887524036348363926
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,7 +10217,7 @@ MonoBehaviour:
   SetToView: 0
   CrossColor: {r: 1, g: 1, b: 1, a: 1}
   crossSize: 0.45
-  centerPosition: {x: 24.703728, y: 2.8728344, z: 0}
+  centerPosition: {x: 0.38682136, y: -2.3884327, z: 0}
 --- !u!114 &4522807899081119045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10203,5 +10231,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabFirstSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
-  prefabSecondSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
   sprite: {fileID: 3756297859674558467}
+  animator: {fileID: 0}
+  animEvents: {fileID: 0}
+  canCast: 1
+  animCast1: 1
+  animCast2: 1
+  isCasting: 0

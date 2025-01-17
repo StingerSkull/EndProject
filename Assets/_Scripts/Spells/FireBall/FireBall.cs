@@ -13,9 +13,4 @@ public class FireBall : MonoBehaviour
         rb2.linearVelocity = transform.right * projectileSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -23,37 +23,22 @@ public class SetPlayerToSceneViewPosition : MonoBehaviour
     Vector3 offset = new Vector3(0f, 0f, 1f);
     [SerializeField] Vector3 centerPosition;
 
-    void Awake()
+    void Start()
     {
         if (SetToView)
         {
             SceneView sceneView = SceneView.lastActiveSceneView;
             if (sceneView != null)
             {
+                
+                centerPosition = sceneView.camera.transform.position + offset;
+
                 if (sceneView.in2DMode) centerPosition.z = 0;
                 transform.position = centerPosition;
             }
         }
     }
 
-    private void Update()
-    {
-        if (SetToView && !Application.isPlaying)
-        {
-            SceneView sceneView = SceneView.lastActiveSceneView;
-            if (sceneView != null && sceneView.in2DMode && EditorApplication.isPlayingOrWillChangePlaymode)
-            {
-                Vector3 _Pos = sceneView.camera.transform.position + offset;
-                if (_Pos != centerPosition)
-                {
-                    centerPosition = _Pos;
-
-                }
-                EditorUtility.SetDirty(this);
-            }
-        }
-
-    }
     private void OnDrawGizmos()
     {
         if (SetToView)

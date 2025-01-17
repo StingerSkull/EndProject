@@ -7,6 +7,7 @@ public class Movement2D : MonoBehaviour
 {
     public GUIStyle mainHeaderStyle = new();
     Animator animator;
+    Casting casting;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Rigidbody2D rb2;
     [SerializeField] CapsuleCollider2D capsuleCollider;
@@ -204,12 +205,6 @@ public class Movement2D : MonoBehaviour
         GetAutoValueForCeilCheck();
         GetAutoValueForGroundCheck();
     }
-    
-    private void Start()
-    {
-        fallClamp = fallSpeedClamp;
-        ledgeClimbDuration = climbAnim.length;
-    }
 
     public enum PlayerStates
     {
@@ -244,17 +239,21 @@ public class Movement2D : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         defaulColliderSize = capsuleCollider.size;
         defaultColliderOffset = capsuleCollider.offset;
         animator = transform.GetChild(0).GetComponent<Animator>();
+        casting = GetComponent<Casting>();
+        fallClamp = fallSpeedClamp;
+        ledgeClimbDuration = climbAnim.length;
     }
     private void Update()
     {
         HandlePlatformerMovement();
+        CanCast();
     }
 
     private void FixedUpdate()
@@ -885,6 +884,17 @@ public class Movement2D : MonoBehaviour
     }
     #endregion
 
+    #region Cast
+    void CanCast()
+    {
+        casting.canCast = !isDashing && !isSlidingOnWall && !isLedge && !isClimbingLedge;
+        /*if (isGrounded && casting.isCasting)
+        {
+            movementSpeed = 0f;
+        }
+        */
+    }
+    #endregion
     public void GetColliderSize()
     {
         dashColliderScale = capsuleCollider.size;

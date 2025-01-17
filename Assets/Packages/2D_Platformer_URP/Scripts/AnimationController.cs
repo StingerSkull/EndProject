@@ -5,7 +5,7 @@ public class AnimationController : MonoBehaviour
 
     Movement2D movement;
     [SerializeField] Animator animator;
-    private void Awake()
+    private void Start()
     {
         movement = GetComponent<Movement2D>();
     }
@@ -19,6 +19,6 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("OnWallHit",movement.hitWall);
         animator.SetBool("OnLedge",movement.isLedge);
         animator.SetBool("ClimbLedge", movement.isClimbingLedge);
-        
+
     }
 }
