@@ -818,6 +818,14 @@ public class Movement2D : MonoBehaviour
     #region Move
     void UpdatePlatformerSpeed()
     {
+        
+        if ((casting.animCast1 || casting.animCast2) && isGrounded)
+        {
+            currentHorizontalSpeed = 0;
+            currentVerticalSpeed = 0;
+            return;
+        }
+
         if (!isDashing) 
         {
             if (input.x != 0)
@@ -888,12 +896,8 @@ public class Movement2D : MonoBehaviour
     void CanCast()
     {
         casting.canCast = !isDashing && !isSlidingOnWall && !isLedge && !isClimbingLedge;
-        /*if (isGrounded && casting.isCasting)
-        {
-            movementSpeed = 0f;
-        }
-        */
     }
+
     #endregion
     public void GetColliderSize()
     {

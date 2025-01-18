@@ -6,13 +6,14 @@ public class Casting : MonoBehaviour
     public GameObject prefabSecondSpell;
     public GameObject sprite;
     public Animator animator;
+    public Movement2D movement;
     public float cooldownBetweenSpells;
 
     public bool canCast = true;
     public bool animCast1 = false;
     public bool animCast2 = false;
 
-    public bool isCasting = false;
+    public bool animCast = false;
 
     private ISpell firstSpell;
     private ISpell secondSpell;
@@ -21,6 +22,7 @@ public class Casting : MonoBehaviour
     void Start()
     {
         animator = sprite.GetComponent<Animator>();
+        movement = GetComponent<Movement2D>();
 
         if (prefabFirstSpell != null)
         {
@@ -47,11 +49,10 @@ public class Casting : MonoBehaviour
                     animCast1 = true;
                 }
 
-                if (animCast1 && isCasting)
+                if (animCast1 && animCast)
                 {
                     firstSpell.Cast();
-                    isCasting = false;
-                    animCast1 = false;
+                    ResetAnimCast(ref animCast1);
                 }
             }
             
@@ -63,26 +64,33 @@ public class Casting : MonoBehaviour
                     animCast2 = true;
                 }
 
-                if (animCast2 && isCasting)
+                if (animCast2 && animCast)
                 {
                     secondSpell.Cast();
-                    isCasting = false;
-                    animCast2 = false;
+                    ResetAnimCast(ref animCast2);
                 }
             }
         }
         else
         {
-            /////////
-            ///HEEEEEEEEERE fix attack run animation
-            isCasting = false;
+            if (animCast)
+            {
+                animator.ResetTrigger("Cast");
+                animCast = false;
+            }
             animCast1 = false;
             animCast2 = false;
         }
     }
 
-    public void SetIsCasting()
+    public void SetAnimCast()
     {
-        isCasting = true;
+        animCast = true;
+    }
+
+    public void ResetAnimCast(ref bool animCastSpell)
+    {
+        animCast = false;
+        animCastSpell = false;
     }
 }

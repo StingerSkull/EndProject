@@ -2166,6 +2166,14 @@ PrefabInstance:
       propertyPath: prefabSecondSpell
       value: 
       objectReference: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
+    - target: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645229320595275780, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: animCast.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAnimCast
+      objectReference: {fileID: 0}
     - target: {fileID: 6008140509056091998, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13
