@@ -2,7 +2,6 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))]
 public class Movement2D : MonoBehaviour
 {
     public GUIStyle mainHeaderStyle = new();
@@ -249,6 +248,7 @@ public class Movement2D : MonoBehaviour
         casting = GetComponent<Casting>();
         fallClamp = fallSpeedClamp;
         ledgeClimbDuration = climbAnim.length;
+        gravity = -Physics2D.gravity.y;
     }
     private void Update()
     {
@@ -460,7 +460,6 @@ public class Movement2D : MonoBehaviour
         Vector2 _posOffset = new (spriteTransform.right.x * ledgeClimbPosOffset.x,
             spriteTransform.up.y * ledgeClimbPosOffset.y);
         transform.position = (Vector2)transform.position + _posOffset;
-
 
     }
 

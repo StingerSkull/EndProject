@@ -30,7 +30,7 @@ public class FireBallSpell : MonoBehaviour, ISpell
     {
         if (chrono <=0)
         {
-            Instantiate(prefabFireball, caster.position, caster.rotation);
+            GameObject fireball = Instantiate(prefabFireball, caster.position, caster.rotation);
             chrono = fireBallData.cooldown;
         }
     }

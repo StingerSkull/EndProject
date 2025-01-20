@@ -47,3 +47,5 @@ MonoBehaviour:
   prefabFireball: {fileID: 1946334589626120814, guid: 39ebb17b27c160840b9dfcde2eaa2c0f, type: 3}
   caster: {fileID: 0}
   fireBallData: {fileID: 11400000, guid: 7c8d037d38d45e342811e4e1de576533, type: 2}
+  timeDespawn: 3
+  chrono: 0

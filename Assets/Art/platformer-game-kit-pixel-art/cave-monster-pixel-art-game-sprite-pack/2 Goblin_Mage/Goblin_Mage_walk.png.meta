@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -89,7 +89,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Goblin_Mage_walk_0: -3241658568381009369
+      Goblin_Mage_walk_1: -7252153443774844508
+      Goblin_Mage_walk_2: -8728997680021502538
+      Goblin_Mage_walk_3: 4274507567145572945
+      Goblin_Mage_walk_4: -7421087711439005706
+      Goblin_Mage_walk_5: 2379829783973851382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

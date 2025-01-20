@@ -4907,6 +4907,7 @@ GameObject:
   - component: {fileID: 9148178792972053937}
   - component: {fileID: 8603827925250911012}
   - component: {fileID: 5645229320595275780}
+  - component: {fileID: 77154015009367793}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -5026,7 +5027,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4522807899081119045}
         m_TargetAssemblyTypeName: Casting, Assembly-CSharp
-        m_MethodName: SetIsCasting
+        m_MethodName: SetAnimCast
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5036,6 +5037,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!70 &77154015009367793
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756297859674558467}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.06334901}
+  m_Size: {x: 0.33999997, y: 0.8742652}
+  m_Direction: 0
 --- !u!1 &5887524036348363926
 GameObject:
   m_ObjectHideFlags: 0
@@ -10088,7 +10126,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   spriteTransform: {fileID: 8229408269421088889}
   rb2: {fileID: 7957650074983017648}
-  capsuleCollider: {fileID: 1515013946062087011}
+  capsuleCollider: {fileID: 77154015009367793}
   climbAnim: {fileID: 7400000, guid: 53bcf95eda4798b4181beb121249b011, type: 2}
   currentHorizontalSpeed: 0
   currentVerticalSpeed: 0
@@ -10231,10 +10269,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabFirstSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
+  prefabSecondSpell: {fileID: 9054828854436788471, guid: 02bcc792d518905439f02a90a7c1a2fe, type: 3}
   sprite: {fileID: 3756297859674558467}
   animator: {fileID: 0}
-  animEvents: {fileID: 0}
+  movement: {fileID: 0}
+  cooldownBetweenSpells: 0
   canCast: 1
-  animCast1: 1
-  animCast2: 1
-  isCasting: 0
+  animCast1: 0
+  animCast2: 0
+  animCast: 0

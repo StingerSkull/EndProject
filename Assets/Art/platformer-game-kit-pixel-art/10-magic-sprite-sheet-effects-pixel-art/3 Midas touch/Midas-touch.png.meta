@@ -162,10 +162,10 @@ TextureImporter:
       name: Midas-touch_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 14
-        width: 17
-        height: 17
+        x: 0
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: Midas-touch_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 4
-        width: 37
-        height: 37
+        x: 72
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Midas-touch_2
       rect:
         serializedVersion: 2
-        x: 160
-        y: 3
-        width: 39
-        height: 39
+        x: 144
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: Midas-touch_3
       rect:
         serializedVersion: 2
-        x: 231
-        y: 1
-        width: 41
-        height: 42
+        x: 216
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: Midas-touch_4
       rect:
         serializedVersion: 2
-        x: 317
-        y: 16
-        width: 13
-        height: 13
+        x: 288
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: Midas-touch_5
       rect:
         serializedVersion: 2
-        x: 381
+        x: 360
         y: 0
-        width: 20
-        height: 25
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: Midas-touch_6
       rect:
         serializedVersion: 2
-        x: 308
-        y: 1
-        width: 8
-        height: 6
+        x: 432
+        y: 0
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,121 +312,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Midas-touch_7
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 0
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52ad5f44f943a2560800000000000000
-      internalID: 7289696805513976357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Midas-touch_8
-      rect:
-        serializedVersion: 2
-        x: 331
-        y: 0
-        width: 16
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe31a8b97741dab50800000000000000
-      internalID: 6605958732365566959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Midas-touch_9
-      rect:
-        serializedVersion: 2
-        x: 405
-        y: 0
-        width: 15
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8bd29390f76bb5a50800000000000000
-      internalID: 6510998343026027960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Midas-touch_10
-      rect:
-        serializedVersion: 2
-        x: 453
-        y: 0
-        width: 20
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e280008169388a400800000000000000
-      internalID: 335662852910090286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Midas-touch_11
-      rect:
-        serializedVersion: 2
-        x: 477
-        y: 0
-        width: 15
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e30a7bcfbaf1182d0800000000000000
-      internalID: -3278304230209249218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f33f31752c0beb0439a1576d35b3ea4d
     internalID: 0
     vertices: []
     indices: 
@@ -438,16 +328,11 @@ TextureImporter:
     nameFileIdTable:
       Midas-touch_0: 3815196923448793229
       Midas-touch_1: -4388960583705368459
-      Midas-touch_10: 335662852910090286
-      Midas-touch_11: -3278304230209249218
       Midas-touch_2: -4948623584124742681
       Midas-touch_3: 4197217615639840597
       Midas-touch_4: 3146276348822871633
       Midas-touch_5: -5238986051722847208
       Midas-touch_6: 5207362957387635433
-      Midas-touch_7: 7289696805513976357
-      Midas-touch_8: 6605958732365566959
-      Midas-touch_9: 6510998343026027960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
