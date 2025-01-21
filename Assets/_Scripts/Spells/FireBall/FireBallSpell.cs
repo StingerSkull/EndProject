@@ -39,4 +39,9 @@ public class FireBallSpell : MonoBehaviour, ISpell
     {
         return chrono > 0;
     }
+
+    public SoundData GetSound()
+    {
+        return fireBallData.castSounds;
+    }
 }

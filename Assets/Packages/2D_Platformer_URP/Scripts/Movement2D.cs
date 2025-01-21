@@ -11,6 +11,8 @@ public class Movement2D : MonoBehaviour
     [SerializeField] Rigidbody2D rb2;
     [SerializeField] CapsuleCollider2D capsuleCollider;
     [SerializeField] AnimationClip climbAnim;
+    [SerializeField] GameObject runDust;
+    [SerializeField] GameObject jumpDustPrefab;
     Vector2 input;
     [HideInInspector] public float currentHorizontalSpeed;
     [HideInInspector] public float currentVerticalSpeed;
@@ -249,6 +251,7 @@ public class Movement2D : MonoBehaviour
         fallClamp = fallSpeedClamp;
         ledgeClimbDuration = climbAnim.length;
         gravity = -Physics2D.gravity.y;
+        runDust.SetActive(false);
     }
     private void Update()
     {
@@ -776,6 +779,7 @@ public class Movement2D : MonoBehaviour
             isPressedJumpButton = false;
             currentVerticalSpeed = jumpVelocity;
             isNormalJumped = true;
+            JumpParticle();
         }
         else if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
         {
@@ -798,7 +802,15 @@ public class Movement2D : MonoBehaviour
             {
                 currentHorizontalSpeed = -jumpVelocity * wallJumpVelocity.x;
             }
+            JumpParticle();
         }
+    }
+
+    void JumpParticle()
+    {
+        GameObject jumpDust = Instantiate(jumpDustPrefab, transform.position, Quaternion.identity);
+        jumpDust.GetComponent<ParticleSystem>().Play();
+        Destroy(jumpDust, jumpDust.GetComponent<ParticleSystem>().main.duration);
     }
 
     void CountDownJumpTolerance()
@@ -877,16 +889,21 @@ public class Movement2D : MonoBehaviour
         {
             _playerRot.y = 0f;
             spriteTransform.localEulerAngles = _playerRot;
+            runDust.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
         }
         else if (!isSlidingOnWall && currentHorizontalSpeed < 0 || (WallJump && isSlidingOnWall && leftWallHit))
         {
             _playerRot.y = 180f;
             spriteTransform.localEulerAngles = _playerRot;
+            runDust.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
         }
     }
 
     void MovePlayer()
     {
+
+        runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0);
+
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }
     #endregion

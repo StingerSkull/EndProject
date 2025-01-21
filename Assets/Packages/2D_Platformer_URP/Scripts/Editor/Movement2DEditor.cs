@@ -35,6 +35,8 @@ public class Movement2DEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("rb2"), new GUIContent("Rigidbody2D", "Rigidbody2D component"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("capsuleCollider"), new GUIContent("Capsule Collider", "Capsule Collider component"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("climbAnim"), new GUIContent("Climb clip animation", "Climb clip animation"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("runDust"), new GUIContent("Run dust particle", "Dust particle for run, dash"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpDustPrefab"), new GUIContent("Double Jump particle", "Dust particle for double jump"));
 
         // SPEED HEADER
         EditorGUILayout.Space(headerTopSpace);

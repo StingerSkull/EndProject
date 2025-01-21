@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a598ea960da778479b787fd2fbcf208, type: 3}
+  m_Name: landSounds
+  m_EditorClassIdentifier: 
+  soundName: landSounds
+  volume: 0.3
+  sounds:
+  - {fileID: 8300000, guid: fa7170b4fef8e2a4abb24bd0bb0c4a12, type: 3}
+  - {fileID: 8300000, guid: 2df9aea2a63af5f47b118167d9181b58, type: 3}
+  - {fileID: 8300000, guid: 3c01250c7c449974db8cde972e1c03ba, type: 3}
+  - {fileID: 8300000, guid: cffe5e55c3b9caf40a98e13d95d21762, type: 3}
+  - {fileID: 8300000, guid: 750136abc4722494b948ddf2e3f358de, type: 3}

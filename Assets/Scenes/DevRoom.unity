@@ -1839,6 +1839,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &1347111146 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4522807899081119045, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+  m_PrefabInstance: {fileID: 7275572782701243013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab1dceee66e8ee41a3c2ce7fe138941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539556901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,13 +2169,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 8604725484680530265, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.12
+      value: 6.42
       objectReference: {fileID: 0}
     - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.332
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2214,6 +2229,10 @@ PrefabInstance:
     - target: {fileID: 4714591738468064753, guid: 117f80b467f147547a93b33c554e6aa4, type: 3}
       propertyPath: m_Name
       value: Goblin_Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472797063507635177, guid: 117f80b467f147547a93b33c554e6aa4, type: 3}
+      propertyPath: m_Mass
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8183742952657368348, guid: 117f80b467f147547a93b33c554e6aa4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2268,13 +2287,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 284681496866225699, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: pitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 284681496866225699, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: casting
+      value: 
+      objectReference: {fileID: 1347111146}
+    - target: {fileID: 284681496866225699, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: soundDataList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 284681496866225699, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+      propertyPath: 'soundDataList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f75a639633dc28741bbda7b841efcf5f, type: 2}
     - target: {fileID: 6008140509056091998, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.18
       objectReference: {fileID: 0}
     - target: {fileID: 6008140509056091998, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: -0.498
       objectReference: {fileID: 0}
     - target: {fileID: 6008140509056091998, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
       propertyPath: m_LocalPosition.z

@@ -7,4 +7,5 @@ public class SpellData : ScriptableObject
     public float range;
     public float cooldown;
     public int numberOfProjectile;
+    public SoundData castSounds;
 }

@@ -15,8 +15,8 @@ public class Casting : MonoBehaviour
 
     public bool animCast = false;
 
-    private ISpell firstSpell;
-    private ISpell secondSpell;
+    public ISpell firstSpell;
+    public ISpell secondSpell;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
