@@ -5,18 +5,23 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     public Rigidbody2D rb2;
-    public CapsuleCollider2D capsuleCollider;
-    public SpriteRenderer spriteRenderer;
     public float projectileSpeed;
     public float timeDespawn;
-    public GameObject explosion;
+    public GameObject prefabExplosion;
     public AnimationClip explosionClip;
+    public SoundData explosionSounds;
+    private float maxSoundLength = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2.linearVelocity = transform.right * projectileSpeed;
         StartCoroutine(TimeBeforeExplose());
+        maxSoundLength = 0f;
+        foreach(AudioClip audioClip in explosionSounds.sounds)
+        {
+            maxSoundLength = Mathf.Max(maxSoundLength, audioClip.length);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,14 +29,14 @@ public class FireBall : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Destroy(collision.transform.parent.gameObject);
-            GameObject newEffectEnemy = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(newEffectEnemy, explosionClip.length);
+            GameObject explosionEffectEnemy = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+            Destroy(explosionEffectEnemy, Mathf.Max(maxSoundLength, explosionClip.length));
             Destroy(gameObject);
         }
         else
         {
-            GameObject newEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(newEffect, explosionClip.length);
+            GameObject explosionEffect = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+            Destroy(explosionEffect, Mathf.Max(maxSoundLength, explosionClip.length));
             Destroy(gameObject);
         }
 
@@ -42,8 +47,8 @@ public class FireBall : MonoBehaviour
         yield return new WaitForSeconds(timeDespawn);
         if (!gameObject.IsDestroyed())
         {
-            GameObject newEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(newEffect, explosionClip.length);
+            GameObject newEffect = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+            Destroy(newEffect, Mathf.Max(maxSoundLength, explosionClip.length));
             Destroy(gameObject);
         }
     }

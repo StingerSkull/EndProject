@@ -87,8 +87,7 @@ public class PlayerAudioEffect : MonoBehaviour
 
     private void PlaySound(SoundData soundData, int index)
     {
-        audioSource.volume = soundData.volume;
         audioSource.pitch = Random.Range(1-pitch, 1+pitch);
-        audioSource.PlayOneShot(soundData.sounds[index]);
+        audioSource.PlayOneShot(soundData.sounds[index], soundData.volume);
     }
 }

@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a598ea960da778479b787fd2fbcf208, type: 3}
-  m_Name: castFireballSounds
+  m_Name: explosionSounds
   m_EditorClassIdentifier: 
-  soundName: castFireballSounds
-  volume: 0.1
+  soundName: explosionSounds
+  volume: 0.06
   sounds:
-  - {fileID: 8300000, guid: 989cff0a0a1941f44bd8e6d9988a3e42, type: 3}
+  - {fileID: 8300000, guid: 887edd864919d7844b90aa14a3657b41, type: 3}
+  - {fileID: 8300000, guid: e825a93e46fc1574bb23e270cca303b6, type: 3}
+  - {fileID: 8300000, guid: 0c58efb7646d08649a319e8a7d96a6d2, type: 3}
+  - {fileID: 8300000, guid: c5f0ed51d065db44ba0bba9d28894499, type: 3}

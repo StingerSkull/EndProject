@@ -7,7 +7,6 @@ public class Casting : MonoBehaviour
     public GameObject sprite;
     public Animator animator;
     public Movement2D movement;
-    public float cooldownBetweenSpells;
 
     public bool canCast = true;
     public bool animCast1 = false;
@@ -45,6 +44,7 @@ public class Casting : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && !firstSpell.IsOnCooldown())
                 {
+                    animCast = false;
                     animator.SetTrigger("Cast");
                     animCast1 = true;
                 }
@@ -60,6 +60,7 @@ public class Casting : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(1) && !secondSpell.IsOnCooldown())
                 {
+                    animCast = false;
                     animator.SetTrigger("Cast");
                     animCast2 = true;
                 }

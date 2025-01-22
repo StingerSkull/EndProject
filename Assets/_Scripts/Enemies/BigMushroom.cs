@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Windows;
 
-public class GoblinMelee : MonoBehaviour
+public class BigMushroom : MonoBehaviour
 {
     public Animator animator;
     public Transform spriteTransform;
@@ -19,8 +19,6 @@ public class GoblinMelee : MonoBehaviour
     public bool isLedge;
 
     public bool facingRight;
-
-    public float pushForce = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -98,17 +96,6 @@ public class GoblinMelee : MonoBehaviour
         isLedge = _hit;
 
     }
-    #endregion
-
-    #region Collider
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForce;
-        }
-    }
-
     #endregion
 
     private void OnDrawGizmos()

@@ -167,6 +167,7 @@ public class Movement2D : MonoBehaviour
     [SerializeField] float jumpToleranceTimer;
     [SerializeField] float fallToleranceTimer;
     public bool isGrounded;
+    float timeLastGrounded;
     [SerializeField] bool onCeil;
     public bool canJump;
 
@@ -243,7 +244,6 @@ public class Movement2D : MonoBehaviour
     private void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
         defaulColliderSize = capsuleCollider.size;
         defaultColliderOffset = capsuleCollider.offset;
         animator = transform.GetChild(0).GetComponent<Animator>();
@@ -252,6 +252,10 @@ public class Movement2D : MonoBehaviour
         ledgeClimbDuration = climbAnim.length;
         gravity = -Physics2D.gravity.y;
         runDust.SetActive(false);
+        timeLastGrounded = 0;
+        isGrounded = false;
+        jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
+        jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
     }
     private void Update()
     {
@@ -348,6 +352,7 @@ public class Movement2D : MonoBehaviour
         
         if (isDashing)
         {
+            Debug.Log("CANCEL");
             isDashing = false;
             
             if (!isAirDashing)
@@ -361,6 +366,10 @@ public class Movement2D : MonoBehaviour
                 dashCoolTimer = 0f;
                 currentHorizontalSpeed *= airDashStopEffect;
                 currentVerticalSpeed *= airDashStopEffect;
+            }
+            if (hitWall)
+            {
+                currentHorizontalSpeed = 0f;
             }
             isAirDashing = false;
             capsuleCollider.offset = defaultColliderOffset;
@@ -390,6 +399,7 @@ public class Movement2D : MonoBehaviour
             isAirDashing = !isGrounded && airDash;
             isDashing = true;
             isPressedDashButton = false;
+            timeLastGrounded = 0f;
 
             if (!isAirDashing)
             {
@@ -566,13 +576,13 @@ public class Movement2D : MonoBehaviour
         {
             if (!hitWall)
             {
-                if (resetDashOnWall)
-                {
-                    canDash = true;
-                }
                 hitWall = true;
                 currentHorizontalSpeed = 0;
                 
+            }
+            if (resetDashOnWall)
+            {
+                canDash = true;
             }
 
             if (WallJump && !isGrounded)
@@ -581,7 +591,7 @@ public class Movement2D : MonoBehaviour
                 
             }
 
-            if (cancelDashOnWallHit && isDashing)
+            if (cancelDashOnWallHit && isDashing && ((leftWallHit && currentHorizontalSpeed<0) || (rightWallHit && currentHorizontalSpeed >0)))
             {
                 CancelDash();
             }
@@ -639,7 +649,7 @@ public class Movement2D : MonoBehaviour
             
             if (!isGrounded)
             {
-                
+                timeLastGrounded = 0f;
                 isGrounded = true;
                 isWallJumped = false;
                 isNormalJumped = false;
@@ -668,6 +678,7 @@ public class Movement2D : MonoBehaviour
         }
         else
         {
+            timeLastGrounded += Time.deltaTime;
             if (isGrounded)
             {
                 onAirControlMultiplier = onAirControl;
@@ -734,15 +745,11 @@ public class Movement2D : MonoBehaviour
     #region Jump
     void PressJumpButton()
     {
-        //if (!isDashing)
-        //{
-        
         isHoldingJumpButton = true;
-            isPressedJumpButton = true;
-            isForcingJump = true;
-            jumpHoldTimer = variableJumpHeightDuration * jumpUpDuration;
-            jumpToleranceTimer = jumpBuffer;
-        //}
+        isPressedJumpButton = true;
+        isForcingJump = true;
+        jumpHoldTimer = variableJumpHeightDuration * jumpUpDuration;
+        jumpToleranceTimer = jumpBuffer;
     }
     void Jump()
     {
@@ -753,7 +760,7 @@ public class Movement2D : MonoBehaviour
             {
                 isForcingJump = false;
             }
-            if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped))
+            if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped) && timeLastGrounded < 1f)
             {
                 currentVerticalSpeed *= jumpReleaseEffect;
                 isForcingJump = false;
@@ -764,8 +771,7 @@ public class Movement2D : MonoBehaviour
         if (canJump && isPressedJumpButton && !isSlidingOnWall)
         {
             CancelDash();
-            jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
-            jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
+            
 
             isJumped = true;
             if (doubleJump && jumpCounter > 0)
@@ -780,11 +786,12 @@ public class Movement2D : MonoBehaviour
             currentVerticalSpeed = jumpVelocity;
             isNormalJumped = true;
             JumpParticle();
+            animator.SetTrigger("Jump");
+            timeLastGrounded = 0f;
         }
         else if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
         {
             CancelDash();
-            jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
             isJumped = true;
             if (!doubleJump)
             {
@@ -803,6 +810,8 @@ public class Movement2D : MonoBehaviour
                 currentHorizontalSpeed = -jumpVelocity * wallJumpVelocity.x;
             }
             JumpParticle();
+            animator.SetTrigger("Jump");
+            timeLastGrounded = 0f;
         }
     }
 
@@ -830,7 +839,7 @@ public class Movement2D : MonoBehaviour
     void UpdatePlatformerSpeed()
     {
         
-        if ((casting.animCast1 || casting.animCast2) && isGrounded)
+        if ((casting.animCast1 || casting.animCast2))
         {
             currentHorizontalSpeed = 0;
             currentVerticalSpeed = 0;
@@ -903,8 +912,16 @@ public class Movement2D : MonoBehaviour
     {
 
         runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0);
+        /*if (rb2.linearVelocity != Vector2.zero)
+        {
+            Debug.Log("BEF : " + rb2.linearVelocity);
 
-        rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
+        }*/
+        rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed);
+        /*if (rb2.linearVelocity != Vector2.zero)
+        {
+            Debug.Log("AF : " + rb2.linearVelocity);
+        }*/
     }
     #endregion
 

@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 8603827925250911012}
   - component: {fileID: 5645229320595275780}
   - component: {fileID: 77154015009367793}
+  - component: {fileID: 1040972276329924094}
   - component: {fileID: 6811423936459929492}
   - component: {fileID: 284681496866225699}
   m_Layer: 3
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,6 +181,52 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.06334901}
   m_Size: {x: 0.33999997, y: 0.8742652}
   m_Direction: 0
+--- !u!61 &1040972276329924094
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756297859674558467}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!82 &6811423936459929492
 AudioSource:
   m_ObjectHideFlags: 0
@@ -290,11 +337,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6811423936459929492}
+  casting: {fileID: 4522807899081119045}
+  pitch: 0.1
   soundDataList:
   - {fileID: 11400000, guid: a46ef098abf20784a9bf8134afeee532, type: 2}
   - {fileID: 11400000, guid: ffc485e550e58744f964829769c9718a, type: 2}
   - {fileID: 11400000, guid: 4358c0f55816d3f40914d78e06d16d03, type: 2}
   - {fileID: 11400000, guid: 453eeb9caeb260b40b4ef49ac67030df, type: 2}
+  - {fileID: 11400000, guid: 64fdfc676d92ff7469f856c84b6b34f3, type: 2}
 --- !u!1 &8592912852885590222
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +385,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008140509056091998}
-  - component: {fileID: 1515013946062087011}
   - component: {fileID: 7957650074983017648}
   - component: {fileID: 5246789730832332084}
   - component: {fileID: 3535953447396953299}
@@ -364,43 +413,6 @@ Transform:
   - {fileID: 8229408269421088889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1515013946062087011
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8926573737668168927}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.06334901}
-  m_Size: {x: 0.33999997, y: 0.8742652}
-  m_Direction: 0
 --- !u!50 &7957650074983017648
 Rigidbody2D:
   serializedVersion: 5
@@ -555,7 +567,7 @@ MonoBehaviour:
   jumpHight: 1.5
   jumpUpAcceleration: 2
   jumpDownAcceleration: 5
-  fallSpeedClamp: 25
+  fallSpeedClamp: 20
   gravity: 9.8
   jumpVelocity: 10
   fallClamp: 25
@@ -658,7 +670,6 @@ MonoBehaviour:
   sprite: {fileID: 3756297859674558467}
   animator: {fileID: 0}
   movement: {fileID: 0}
-  cooldownBetweenSpells: 0
   canCast: 1
   animCast1: 0
   animCast2: 0

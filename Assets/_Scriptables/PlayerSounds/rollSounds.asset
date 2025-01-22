@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a598ea960da778479b787fd2fbcf208, type: 3}
-  m_Name: castFireballSounds
+  m_Name: rollSounds
   m_EditorClassIdentifier: 
-  soundName: castFireballSounds
-  volume: 0.1
+  soundName: rollSounds
+  volume: 0.15
   sounds:
-  - {fileID: 8300000, guid: 989cff0a0a1941f44bd8e6d9988a3e42, type: 3}
+  - {fileID: 8300000, guid: e622a6b675854bf48979b08678815799, type: 3}
+  - {fileID: 8300000, guid: e622a6b675854bf48979b08678815799, type: 3}
+  - {fileID: 8300000, guid: 7bcf0d3917fd27e4399edd0aeb06503d, type: 3}
+  - {fileID: 8300000, guid: 7bcf0d3917fd27e4399edd0aeb06503d, type: 3}

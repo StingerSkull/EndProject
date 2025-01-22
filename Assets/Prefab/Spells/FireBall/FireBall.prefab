@@ -74,12 +74,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2: {fileID: 8734374183024988943}
-  capsuleCollider: {fileID: 0}
-  spriteRenderer: {fileID: 3879388219726282422}
   projectileSpeed: 7
   timeDespawn: 2
-  explosion: {fileID: 8857361686280433044, guid: 241382451e8e4064a9118def8393a476, type: 3}
+  prefabExplosion: {fileID: 8857361686280433044, guid: 241382451e8e4064a9118def8393a476, type: 3}
   explosionClip: {fileID: 7400000, guid: 304b9eac8173838458658bb9fbf07017, type: 2}
+  explosionSounds: {fileID: 11400000, guid: 4a0242de596a4a34d9e750a8f99651be, type: 2}
 --- !u!1 &7392527302398181412
 GameObject:
   m_ObjectHideFlags: 0
