@@ -113,6 +113,8 @@ public class Movement2DEditor : Editor
             EditorGUILayout.HelpBox("Adjust the size and position of the sliding collider to suit your character's sliding behavior. Modify these values in the Unity editor by adjusting the collider's scale and offset. Press the button to save the adjusted values here.", MessageType.Info);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashColliderScale"), new GUIContent("Dash Collider Scale", "Determines the size of the dash collider. Changing this value affects how much space the player occupies during a dash, allowing them to fit through tight spaces or slide under objects."));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashColliderOffset"), new GUIContent("Dash Collider Offset", "Controls the position of the dash collider relative to the player's pivot point. Adjusting this value changes where the collider is placed, enabling precise control over sliding maneuvers during a dash."));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("playerLayer"), new GUIContent("Player Layer", "Set player layer for the roll dodge"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyLayer"), new GUIContent("Enemy Layer", "Set enemy layer for the roll dodge"));
 
             if (GUILayout.Button("Copy Current Collider Values"))
             {

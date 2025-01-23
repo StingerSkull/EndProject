@@ -331,4 +331,5 @@ MonoBehaviour:
     m_Bits: 1
   isLedge: 0
   facingRight: 0
-  pushForce: 10
+  pushForceX: 10
+  pushForceY: 5

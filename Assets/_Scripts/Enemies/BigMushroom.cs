@@ -20,6 +20,9 @@ public class BigMushroom : MonoBehaviour
 
     public bool facingRight;
 
+    public float pushForceX = 1f;
+    public float pushForceY = 0.5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -98,19 +101,34 @@ public class BigMushroom : MonoBehaviour
     }
     #endregion
 
+    #region Collider
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HurtPlayer(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        HurtPlayer(collision);
+    }
+
+    #endregion
+
+    void HurtPlayer(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
+            if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
+            {
+                player.GetComponent<PlayerDamage>().PlayerHurt(1);
+                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForceX;
+                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.contacts[0].normal.y * pushForceY;
+            }
+        }
+    }
     private void OnDrawGizmos()
     {
-        /*
-        if (isGrounded)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckCenter - (Vector2)transform.up * groundCheckRayDistance, groundCheckCircleRadius);
-        */
 
         if (isLedge)
         {

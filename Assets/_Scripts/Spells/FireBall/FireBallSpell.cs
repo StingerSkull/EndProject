@@ -14,13 +14,13 @@ public class FireBallSpell : MonoBehaviour, ISpell
     {
         caster = transform.parent.Find("Caster");
         
-        chrono = 0;
+        chrono = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(chrono > 0)
+        if(chrono > 0f)
         {
             chrono -= Time.deltaTime;
         }
@@ -28,7 +28,7 @@ public class FireBallSpell : MonoBehaviour, ISpell
 
     public void Cast()
     {
-        if (chrono <=0)
+        if (chrono <=0f)
         {
             GameObject fireball = Instantiate(prefabFireball, caster.position, caster.rotation);
             chrono = fireBallData.cooldown;
@@ -37,7 +37,7 @@ public class FireBallSpell : MonoBehaviour, ISpell
 
     public bool IsOnCooldown()
     {
-        return chrono > 0;
+        return chrono > 0f;
     }
 
     public SoundData GetSound()

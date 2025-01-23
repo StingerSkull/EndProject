@@ -20,13 +20,15 @@ public class GoblinMelee : MonoBehaviour
 
     public bool facingRight;
 
-    public float pushForce = 1f;
+    public float pushForceX = 1f;
+    public float pushForceY = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         facingRight = false;
+
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class GoblinMelee : MonoBehaviour
     {
         CheckLedgeAndWall();
         Flip();
+
     }
 
     private void FixedUpdate()
@@ -67,13 +70,13 @@ public class GoblinMelee : MonoBehaviour
     {
         Vector3 _enemyRot = transform.localEulerAngles;
 
-        if (velocity > 0)
+        if (velocity > 0f)
         {
             facingRight = false;
             _enemyRot.y = 180f;
             transform.localEulerAngles = _enemyRot;
         }
-        else if (velocity < 0)
+        else if (velocity < 0f)
         {
             facingRight = true;
             _enemyRot.y = 0f;
@@ -103,27 +106,32 @@ public class GoblinMelee : MonoBehaviour
     #region Collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForce;
-        }
+        HurtPlayer(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    { 
+        HurtPlayer(collision);
     }
 
     #endregion
 
+    void HurtPlayer(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
+            if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
+            {
+                player.GetComponent<PlayerDamage>().PlayerHurt(1);
+                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForceX;
+                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.contacts[0].normal.y * pushForceY;
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
-        /*
-        if (isGrounded)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckCenter - (Vector2)transform.up * groundCheckRayDistance, groundCheckCircleRadius);
-        */
 
         if (isLedge)
         {

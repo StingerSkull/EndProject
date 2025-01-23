@@ -58,6 +58,8 @@ public class Movement2D : MonoBehaviour
     [SerializeField] bool horizontalDash;
     [SerializeField] Vector2 dashColliderScale;
     [SerializeField] Vector2 dashColliderOffset;
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask enemyLayer;
     [Space]
     [SerializeField] float dashCooldown = 0.5f;
     [SerializeField] float dashCoolTimer;
@@ -352,11 +354,11 @@ public class Movement2D : MonoBehaviour
         
         if (isDashing)
         {
-            Debug.Log("CANCEL");
             isDashing = false;
             
             if (!isAirDashing)
             {
+                //Physics2D.IgnoreLayerCollision(playerLayer.value, enemyLayer.value, false);
                 dashCoolTimer = dashCooldown;
                 currentHorizontalSpeed *= dashStopEffect;
                 currentVerticalSpeed *= dashStopEffect;
@@ -405,6 +407,9 @@ public class Movement2D : MonoBehaviour
             {
                 dashSpeed = (dashDistance) / dashDuration;
                 dashingTimer = dashDuration;
+                Debug.Log("player : " + playerLayer.value);
+                Debug.Log("enemy : " + enemyLayer.value);
+                //Physics2D.IgnoreLayerCollision(playerLayer.value, enemyLayer.value, true);
             }
             else
             {
@@ -894,13 +899,13 @@ public class Movement2D : MonoBehaviour
     {
         Vector3 _playerRot = spriteTransform.localEulerAngles;
         
-        if (!isSlidingOnWall && currentHorizontalSpeed > 0 || (WallJump && isSlidingOnWall && rightWallHit))
+        if (!isSlidingOnWall && currentHorizontalSpeed > 0 && (input.x > 0 || isWallJumped) || (WallJump && isSlidingOnWall && rightWallHit))
         {
             _playerRot.y = 0f;
             spriteTransform.localEulerAngles = _playerRot;
             runDust.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
         }
-        else if (!isSlidingOnWall && currentHorizontalSpeed < 0 || (WallJump && isSlidingOnWall && leftWallHit))
+        else if (!isSlidingOnWall && currentHorizontalSpeed < 0 && (input.x < 0 || isWallJumped) || (WallJump && isSlidingOnWall && leftWallHit))
         {
             _playerRot.y = 180f;
             spriteTransform.localEulerAngles = _playerRot;
@@ -911,17 +916,10 @@ public class Movement2D : MonoBehaviour
     void MovePlayer()
     {
 
-        runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0);
-        /*if (rb2.linearVelocity != Vector2.zero)
-        {
-            Debug.Log("BEF : " + rb2.linearVelocity);
+        runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0 && input.x != 0);
 
-        }*/
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed);
-        /*if (rb2.linearVelocity != Vector2.zero)
-        {
-            Debug.Log("AF : " + rb2.linearVelocity);
-        }*/
+
     }
     #endregion
 

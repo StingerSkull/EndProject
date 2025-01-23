@@ -1,16 +1,63 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerDamage : MonoBehaviour
 {
+    public Animator animator;
+
+    public int maxLife = 5;
+    public int currentLife;
+
+    public float hurtCooldown = 0.5f;
+    public float hurtTimer = 0f;
+
+    public UnityEvent playerHurt;
+    public UnityEvent playerDeath;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        currentLife = maxLife;
+        hurtTimer = 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (hurtTimer > 0f)
+        {
+            hurtTimer -= Time.deltaTime;
+        }
+    }
+
+    public void PlayerHurt(int dmg)
+    {
+        if (hurtTimer <= 0f)
+        {
+            currentLife -= dmg;
+            if (currentLife > 0)
+            {
+                Debug.Log("AIE");
+                animator.SetTrigger("Hurt");
+                playerHurt.Invoke();
+            }
+            else
+            {
+                Debug.Log("DEATH");
+                playerDeath.Invoke();
+            }
+            ResetAnimationTriggers();
+            hurtTimer = hurtCooldown;
+        }
+    }
+
+    public void ResetAnimationTriggers()
+    {
+        animator.ResetTrigger("Cast");
+        animator.ResetTrigger("Jump");
+    }
+
+    public bool InHurtCoolDown()
+    {
+        return hurtTimer > 0f;
     }
 }

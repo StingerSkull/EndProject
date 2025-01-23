@@ -7,16 +7,9 @@ public class GetAnimationEvents : MonoBehaviour
 {
     public UnityEvent animCast;
 
-    public void CastAnimation(int value)
+    public void CastAnimation()
     {
-        switch (value)
-        {
-            case 0:
-                animCast.Invoke();
-                break;
-
-            default:
-                break;
-        }
+        animCast.Invoke();
     }
+
 }
