@@ -550,6 +550,12 @@ MonoBehaviour:
   horizontalDash: 1
   dashColliderScale: {x: 0.33999997, y: 0.6433492}
   dashColliderOffset: {x: 0, y: -0.17880702}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
   dashCooldown: 0.25
   dashCoolTimer: 0
   dashToleranceTimer: 0

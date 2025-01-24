@@ -42,7 +42,7 @@ public class Casting : MonoBehaviour
         {
             if (firstSpell != null)
             {
-                if (Input.GetMouseButtonDown(0) && !firstSpell.IsOnCooldown())
+                if (Input.GetMouseButtonDown(0) && !firstSpell.IsOnCooldown() && !animCast1)
                 {
                     animCast = false;
                     animator.SetTrigger("Cast");
@@ -58,7 +58,7 @@ public class Casting : MonoBehaviour
             
             if (secondSpell != null)
             {
-                if (Input.GetMouseButtonDown(1) && !secondSpell.IsOnCooldown())
+                if (Input.GetMouseButtonDown(1) && !secondSpell.IsOnCooldown() && !animCast2)
                 {
                     animCast = false;
                     animator.SetTrigger("Cast");

@@ -120,6 +120,7 @@ public class GoblinMelee : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            Debug.Log(collision.gameObject);
             GameObject player = collision.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {

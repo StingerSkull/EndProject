@@ -59,7 +59,9 @@ public class Movement2D : MonoBehaviour
     [SerializeField] Vector2 dashColliderScale;
     [SerializeField] Vector2 dashColliderOffset;
     [SerializeField] LayerMask playerLayer;
+    int playerLayerId;
     [SerializeField] LayerMask enemyLayer;
+    int enemyLayerId;
     [Space]
     [SerializeField] float dashCooldown = 0.5f;
     [SerializeField] float dashCoolTimer;
@@ -258,6 +260,8 @@ public class Movement2D : MonoBehaviour
         isGrounded = false;
         jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
         jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
+        playerLayerId = (int)Mathf.Log(playerLayer.value, 2f);
+        enemyLayerId = (int)Mathf.Log(enemyLayer.value, 2f);
     }
     private void Update()
     {
@@ -358,7 +362,7 @@ public class Movement2D : MonoBehaviour
             
             if (!isAirDashing)
             {
-                //Physics2D.IgnoreLayerCollision(playerLayer.value, enemyLayer.value, false);
+                Physics2D.IgnoreLayerCollision(playerLayerId, enemyLayerId, false);
                 dashCoolTimer = dashCooldown;
                 currentHorizontalSpeed *= dashStopEffect;
                 currentVerticalSpeed *= dashStopEffect;
@@ -407,9 +411,7 @@ public class Movement2D : MonoBehaviour
             {
                 dashSpeed = (dashDistance) / dashDuration;
                 dashingTimer = dashDuration;
-                Debug.Log("player : " + playerLayer.value);
-                Debug.Log("enemy : " + enemyLayer.value);
-                //Physics2D.IgnoreLayerCollision(playerLayer.value, enemyLayer.value, true);
+                Physics2D.IgnoreLayerCollision(playerLayerId, enemyLayerId, true);
             }
             else
             {

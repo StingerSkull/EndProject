@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,9 @@ public class PlayerDamage : MonoBehaviour
 
     public float hurtCooldown = 0.5f;
     public float hurtTimer = 0f;
+
+    public Transform start;
+    public CinemachineCamera cinemachineCamera;
 
     public UnityEvent playerHurt;
     public UnityEvent playerDeath;
@@ -36,14 +40,16 @@ public class PlayerDamage : MonoBehaviour
             currentLife -= dmg;
             if (currentLife > 0)
             {
-                Debug.Log("AIE");
                 animator.SetTrigger("Hurt");
                 playerHurt.Invoke();
             }
             else
             {
-                Debug.Log("DEATH");
                 playerDeath.Invoke();
+                transform.position = start.position;
+                cinemachineCamera.transform.position = start.position;
+                cinemachineCamera.PreviousStateIsValid = false;
+                currentLife = maxLife;
             }
             ResetAnimationTriggers();
             hurtTimer = hurtCooldown;
