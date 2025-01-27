@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pausePanel;
     public GameObject winPanel;
+    public GameObject losePanel;
     public GameObject pauseBtn;
     public GameObject player;
+    public AudioSource audioSource;
 
     public TextMeshProUGUI textTime; 
 
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour
     {
         pausePanel.SetActive(isPaused);
         winPanel.SetActive(false);
-        Score = 0;
+        losePanel.SetActive(false);
+
         chrono = 0;
         textTime.text = "0";
     }
@@ -47,14 +50,16 @@ public class GameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             pausePanel.SetActive(isPaused);
-
+            
             if (isPaused)
             {
                 Time.timeScale = 0f;
+                audioSource.Pause();
             }
             else
             {
                 Time.timeScale = 1f;
+                audioSource.Play();
             }
         }
     }
@@ -63,6 +68,13 @@ public class GameManager : MonoBehaviour
     {
         canPause = false;
         winPanel.SetActive(true);
+        pauseBtn.SetActive(false);
+        Time.timeScale = 0f;
+    }
+    public void Lose()
+    {
+        canPause = false;
+        losePanel.SetActive(true);
         pauseBtn.SetActive(false);
         Time.timeScale = 0f;
     }

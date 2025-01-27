@@ -124,7 +124,7 @@ public class GoblinMelee : MonoBehaviour
             GameObject player = collision.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-                player.GetComponent<PlayerDamage>().PlayerHurt(1);
+                player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
                 player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForceX;
                 player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.contacts[0].normal.y * pushForceY;
             }

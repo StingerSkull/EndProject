@@ -33,7 +33,7 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
-    public void PlayerHurt(int dmg)
+    public void PlayerEnemyDmg(int dmg)
     {
         if (hurtTimer <= 0f)
         {
@@ -46,14 +46,24 @@ public class PlayerDamage : MonoBehaviour
             else
             {
                 playerDeath.Invoke();
-                transform.position = start.position;
-                cinemachineCamera.transform.position = start.position;
-                cinemachineCamera.PreviousStateIsValid = false;
-                currentLife = maxLife;
             }
             ResetAnimationTriggers();
             hurtTimer = hurtCooldown;
         }
+    }
+    
+    public void PlayerDmg(int dmg)
+    {      
+        currentLife -= dmg;
+        if (currentLife > 0)
+        {
+            playerHurt.Invoke();
+        }
+        else
+        {
+            playerDeath.Invoke();
+        }
+        ResetAnimationTriggers();
     }
 
     public void ResetAnimationTriggers()

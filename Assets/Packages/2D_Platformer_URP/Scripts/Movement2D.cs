@@ -1,5 +1,8 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement2D : MonoBehaviour
@@ -14,6 +17,7 @@ public class Movement2D : MonoBehaviour
     [SerializeField] GameObject runDust;
     [SerializeField] GameObject jumpDustPrefab;
     Vector2 input;
+    Vector2 lastinput;
     [HideInInspector] public float currentHorizontalSpeed;
     [HideInInspector] public float currentVerticalSpeed;
     [HideInInspector] public PlayerStates currentState;
@@ -267,6 +271,7 @@ public class Movement2D : MonoBehaviour
     {
         HandlePlatformerMovement();
         CanCast();
+        Debug.Log(input);
     }
 
     private void FixedUpdate()
@@ -295,9 +300,119 @@ public class Movement2D : MonoBehaviour
     }
 
     #region Input
+    public void InputMove(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                Debug.Log("Disabled");
+                break;
+            case InputActionPhase.Waiting:
+                Debug.Log("Waiting");
+                break;
+            case InputActionPhase.Started:
+                Debug.Log("Started");
+                break;
+            case InputActionPhase.Performed:
+                input = context.ReadValue<Vector2>();
+                lastinput = context.ReadValue<Vector2>();
+                Debug.Log("Performed : " + input);
+
+                break;
+            case InputActionPhase.Canceled:
+                Debug.Log("Canceled");
+                input = Vector2.zero;
+                lastinput = Vector2.zero;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void InputDash(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                DashPressed();
+                break;
+            case InputActionPhase.Canceled:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void InputJump(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                PressJumpButton();
+                break;
+            case InputActionPhase.Canceled:
+                isHoldingJumpButton = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void InputCast1(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                casting.inputCast1 = true;
+                break;
+            case InputActionPhase.Canceled:
+                casting.inputCast1 = false;
+                break;
+            default:
+                break;
+        }
+    }public void InputCast2(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Started:
+                break;
+            case InputActionPhase.Performed:
+                casting.inputCast2 = true;
+                break;
+            case InputActionPhase.Canceled:
+                casting.inputCast2 = false;
+                break;
+            default:
+                break;
+        }
+    }
+
     void GetPlatformerInput()
     {
-        input.x = Input.GetAxisRaw("Horizontal");
+/*        input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(jumpButton))
@@ -314,10 +429,14 @@ public class Movement2D : MonoBehaviour
             DashPressed();
 
         }
-
+*/
         DoDash();
         Jump();
     }
+
+
+
+
     #endregion
 
     #region Dash
@@ -395,7 +514,7 @@ public class Movement2D : MonoBehaviour
 
     void DoDash() { 
 
-        if ((canDash && isPressedDashButton) && !isDashing && Dash && ((horizontalDash && input.x != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
+        if ((canDash && isPressedDashButton) && !isDashing && Dash && ((horizontalDash && currentHorizontalSpeed != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
         {
 
             if (!isGrounded)
@@ -587,7 +706,7 @@ public class Movement2D : MonoBehaviour
                 currentHorizontalSpeed = 0;
                 
             }
-            if (resetDashOnWall)
+            if (resetDashOnWall && !isDashing)
             {
                 canDash = true;
             }
@@ -640,8 +759,23 @@ public class Movement2D : MonoBehaviour
     {
         if (isSlidingOnWall)
         {
-            inputDelayTimer = (input.x == 0) ? inputDelay : inputDelayTimer - Time.deltaTime;
-            if (inputDelayTimer > 0f) input.x = 0;
+            inputDelayTimer = (lastinput.x == 0) ? inputDelay : inputDelayTimer - Time.deltaTime;
+            if (inputDelayTimer > 0f)
+            {
+                input.x = 0;
+            }
+            else
+            {
+                input.x = lastinput.x;
+            }
+        }
+        else
+        {
+            inputDelayTimer = 0f;
+            if(input.x == 0 && lastinput.x != 0)
+            {
+                input.x = lastinput.x;
+            }
         }
 
     }
@@ -767,7 +901,7 @@ public class Movement2D : MonoBehaviour
             {
                 isForcingJump = false;
             }
-            if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped) && timeLastGrounded < 1f)
+            if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped) && timeLastGrounded < jumpUpDuration)
             {
                 currentVerticalSpeed *= jumpReleaseEffect;
                 isForcingJump = false;

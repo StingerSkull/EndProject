@@ -374,6 +374,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7275572782701243014}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7275572782701243014}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7275572782701243014}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7275572782701243014}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7275572782701243014}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InputMove
+      objectReference: {fileID: 0}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InputCast1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InputJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InputDash
+      objectReference: {fileID: 0}
+    - target: {fileID: 6027971195871940317, guid: 47eb3159d0b11904582bfe430eef7907, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InputCast2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -554,6 +594,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+--- !u!114 &7275572782701243014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5246789730832332084, guid: a771286e2f8bac941a33fbc742fa57b7, type: 3}
+  m_PrefabInstance: {fileID: 7275572782701243013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a2a02d13f5d1d45ad93d405b62e7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8221271114119023282
 PrefabInstance:
   m_ObjectHideFlags: 0

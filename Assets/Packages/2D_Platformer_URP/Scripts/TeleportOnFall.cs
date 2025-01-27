@@ -9,6 +9,7 @@ public class TeleportOnFall : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.transform.parent.position = teleportPos.position;
+            collision.transform.parent.GetComponent<PlayerDamage>().PlayerDmg(1);
         }
     }
 }
