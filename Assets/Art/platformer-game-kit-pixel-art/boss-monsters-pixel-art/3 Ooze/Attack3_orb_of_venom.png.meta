@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Attack3_orb_of_venom_0: -967451668959331388
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

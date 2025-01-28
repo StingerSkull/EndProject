@@ -710,7 +710,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elemental_attack1_0: -3679738291754482636
+      Elemental_attack1_1: 5615574541909991110
+      Elemental_attack1_10: 3590569301483033682
+      Elemental_attack1_11: 1625334887972007501
+      Elemental_attack1_12: -2745681814295184498
+      Elemental_attack1_13: 1683182940731556739
+      Elemental_attack1_14: 6179771059395972310
+      Elemental_attack1_15: 1206500845428922166
+      Elemental_attack1_16: 1748308839021910390
+      Elemental_attack1_17: 5258244347791306248
+      Elemental_attack1_18: 2130854871255997408
+      Elemental_attack1_19: -8759866061002764016
+      Elemental_attack1_2: 7228316279229655058
+      Elemental_attack1_20: 8452755133731894370
+      Elemental_attack1_21: -3285408448987411731
+      Elemental_attack1_22: -6897283254633424465
+      Elemental_attack1_3: -6427428255209537813
+      Elemental_attack1_4: 7515696784818071767
+      Elemental_attack1_5: -3775437480880406331
+      Elemental_attack1_6: -7167233144861922103
+      Elemental_attack1_7: 1107965204432058887
+      Elemental_attack1_8: 2059625106351132057
+      Elemental_attack1_9: 9139477997368366880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

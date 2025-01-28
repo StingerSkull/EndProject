@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HugeMushroom_hurt_0: -4443786254022882515
+      HugeMushroom_hurt_1: -8778406128063370280
+      HugeMushroom_hurt_2: -5482108923474109611
+      HugeMushroom_hurt_3: 8160227801692998015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

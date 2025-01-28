@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mage_boss_hurt_0: -4063005817700429099
+      Mage_boss_hurt_1: -833654429497731491
+      Mage_boss_hurt_2: -6180964379542330470
+      Mage_boss_hurt_3: 7388123893128091944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

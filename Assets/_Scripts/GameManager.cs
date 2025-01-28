@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
         winPanel.SetActive(true);
         pauseBtn.SetActive(false);
         Time.timeScale = 0f;
+        audioSource.Pause();
     }
     public void Lose()
     {
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         losePanel.SetActive(true);
         pauseBtn.SetActive(false);
         Time.timeScale = 0f;
+        audioSource.Pause();
     }
 
     public void ReloadScene()

@@ -310,7 +310,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mage_boss_attack3_0: -895986783503488382
+      Mage_boss_attack3_1: -7204530413278069864
+      Mage_boss_attack3_2: -1300572296758275376
+      Mage_boss_attack3_3: 7695514809860165003
+      Mage_boss_attack3_4: -1357148347976064080
+      Mage_boss_attack3_5: -7486018819320780500
+      Mage_boss_attack3_6: 7373189856273870610
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

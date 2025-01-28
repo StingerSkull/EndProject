@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dark_Goblin_0: 7177083741408206474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GoblinKing_sneer_0: -4602892065924526364
+      GoblinKing_sneer_1: 5445912442854129108
+      GoblinKing_sneer_2: 7573804711231346971
+      GoblinKing_sneer_3: 3048955772091754837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

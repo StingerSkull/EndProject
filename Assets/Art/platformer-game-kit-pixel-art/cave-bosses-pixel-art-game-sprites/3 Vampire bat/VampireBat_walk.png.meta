@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VampireBat_walk_0: -6827767338682805570
+      VampireBat_walk_1: 1131684015480172612
+      VampireBat_walk_2: -1603995177331526095
+      VampireBat_walk_3: -712920825448831520
+      VampireBat_walk_4: 7853711226791232077
+      VampireBat_walk_5: 8332679612857526957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

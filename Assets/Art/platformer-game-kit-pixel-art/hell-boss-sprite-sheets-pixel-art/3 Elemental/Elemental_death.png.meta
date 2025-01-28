@@ -785,7 +785,33 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elemental_death_0: 6774100756023099092
+      Elemental_death_1: 6064403564437438901
+      Elemental_death_10: -5631031725051482320
+      Elemental_death_11: -1823413220499935118
+      Elemental_death_12: 1201819248488456787
+      Elemental_death_13: 2132340545165759722
+      Elemental_death_14: 254827929332230802
+      Elemental_death_15: 4591560959548731732
+      Elemental_death_16: -1754727306781497349
+      Elemental_death_17: 8050683618566924314
+      Elemental_death_18: -2163765407677361592
+      Elemental_death_19: -7226481777239486297
+      Elemental_death_2: -6379137082555601530
+      Elemental_death_20: -1020590863624189291
+      Elemental_death_21: 6974422725037931633
+      Elemental_death_22: -576362149060525718
+      Elemental_death_23: -2793873035547680985
+      Elemental_death_24: -2657653861376061956
+      Elemental_death_25: 5273120914276995794
+      Elemental_death_3: -2302700982069057467
+      Elemental_death_4: -5009086675756607571
+      Elemental_death_5: -8436421776720328093
+      Elemental_death_6: -2739800427501505311
+      Elemental_death_7: 661143108488556761
+      Elemental_death_8: -5779128187364847205
+      Elemental_death_9: 9171540355110106383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

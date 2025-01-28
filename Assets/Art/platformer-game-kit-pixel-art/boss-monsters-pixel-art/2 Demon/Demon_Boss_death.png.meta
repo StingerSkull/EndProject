@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Demon_Boss_death_0: 4028092519801057976
+      Demon_Boss_death_1: -4026658093720768607
+      Demon_Boss_death_2: -2195460177478221761
+      Demon_Boss_death_3: -7909028203222601586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

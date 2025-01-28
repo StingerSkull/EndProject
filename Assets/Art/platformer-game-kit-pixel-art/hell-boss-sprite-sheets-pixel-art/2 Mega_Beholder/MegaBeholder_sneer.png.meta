@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MegaBeholder_sneer_0: -5701414598861219895
+      MegaBeholder_sneer_1: 9218443753771408499
+      MegaBeholder_sneer_2: -3302970307534548530
+      MegaBeholder_sneer_3: -4982598462302588227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

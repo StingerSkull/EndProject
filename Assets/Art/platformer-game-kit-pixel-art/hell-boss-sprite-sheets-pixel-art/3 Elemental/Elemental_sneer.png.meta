@@ -710,7 +710,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elemental_sneer_0: -4017918118632839827
+      Elemental_sneer_1: -7291353071219633366
+      Elemental_sneer_10: 6389348361156735345
+      Elemental_sneer_11: -6305550932967433087
+      Elemental_sneer_12: -5017671178871504707
+      Elemental_sneer_13: 7351529834575444808
+      Elemental_sneer_14: 8860012369298862216
+      Elemental_sneer_15: -5432735088788201627
+      Elemental_sneer_16: -7011199011648152307
+      Elemental_sneer_17: 4714952995636035369
+      Elemental_sneer_18: 4041618031032119631
+      Elemental_sneer_19: -4021649741797012366
+      Elemental_sneer_2: -6771278532202781714
+      Elemental_sneer_20: 5926450710933983795
+      Elemental_sneer_21: -6296451411792399431
+      Elemental_sneer_22: 9197374250123999129
+      Elemental_sneer_3: -1553667677174186986
+      Elemental_sneer_4: -3144754362497209665
+      Elemental_sneer_5: -5740511599982051020
+      Elemental_sneer_6: 5555520281433372519
+      Elemental_sneer_7: 4380740945825207398
+      Elemental_sneer_8: 7506487900668110005
+      Elemental_sneer_9: 5889821303393469170
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

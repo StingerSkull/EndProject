@@ -35,11 +35,15 @@ public class FireBallSpell : MonoBehaviour, ISpell
         }
     }
 
-    public bool IsOnCooldown()
+    public float OnCooldown()
     {
-        return chrono > 0f;
+        return chrono;
     }
 
+    public SpellData GetSpellData()
+    {
+        return fireBallData;
+    }
     public SoundData GetSound()
     {
         return fireBallData.castSounds;

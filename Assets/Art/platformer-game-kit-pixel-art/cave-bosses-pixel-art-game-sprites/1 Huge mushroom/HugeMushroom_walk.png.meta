@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HugeMushroom_walk_0: 4576721517502465260
+      HugeMushroom_walk_1: -666625157795652742
+      HugeMushroom_walk_2: -4676042212793959226
+      HugeMushroom_walk_3: 516897890418105604
+      HugeMushroom_walk_4: 8128937922851252900
+      HugeMushroom_walk_5: 1058646557404578102
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

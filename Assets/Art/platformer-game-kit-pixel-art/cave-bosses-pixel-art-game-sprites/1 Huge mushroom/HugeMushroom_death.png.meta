@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HugeMushroom_death_0: -7476099056467118721
+      HugeMushroom_death_1: -3366745662466313344
+      HugeMushroom_death_2: 7589908126058338540
+      HugeMushroom_death_3: -5315808637123486654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

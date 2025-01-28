@@ -3,7 +3,8 @@ using UnityEngine;
 public interface ISpell
 {
     void Cast();
-    bool IsOnCooldown();
+    float OnCooldown();
 
+    SpellData GetSpellData();
     SoundData GetSound();
 }

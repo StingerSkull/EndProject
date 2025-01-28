@@ -710,7 +710,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elemental_hurt_0: 2812005020085215035
+      Elemental_hurt_1: -4324518582360477385
+      Elemental_hurt_10: 5472534946896502256
+      Elemental_hurt_11: 7709412593279462815
+      Elemental_hurt_12: 1248913151251519503
+      Elemental_hurt_13: -3685073289509382009
+      Elemental_hurt_14: 4915962232781687206
+      Elemental_hurt_15: 1775729961609387554
+      Elemental_hurt_16: -8146908739267936879
+      Elemental_hurt_17: -9049858826951094237
+      Elemental_hurt_18: 6184444522467718521
+      Elemental_hurt_19: 6097945649143343809
+      Elemental_hurt_2: 2743003521015774412
+      Elemental_hurt_20: 2225723543946793003
+      Elemental_hurt_21: 5557337605719999832
+      Elemental_hurt_22: -398366832187510573
+      Elemental_hurt_3: -4256311512001519212
+      Elemental_hurt_4: -3560121269080312587
+      Elemental_hurt_5: 7151209919887787424
+      Elemental_hurt_6: 914853086438939987
+      Elemental_hurt_7: -1271549624213732757
+      Elemental_hurt_8: 6509909736185904429
+      Elemental_hurt_9: 6303287215094459805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

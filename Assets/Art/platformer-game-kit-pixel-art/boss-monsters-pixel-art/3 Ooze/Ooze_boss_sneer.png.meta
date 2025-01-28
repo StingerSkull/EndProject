@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ooze_boss_sneer_0: -2069339129962629953
+      Ooze_boss_sneer_1: 1313677514504841300
+      Ooze_boss_sneer_2: -1254014484190681114
+      Ooze_boss_sneer_3: -6877502758606900999
+      Ooze_boss_sneer_4: 8494551685393651212
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

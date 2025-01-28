@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ooze_boss_attack3_0: -4806578215923677001
+      Ooze_boss_attack3_1: -9203359713897213258
+      Ooze_boss_attack3_2: 5220578332410755682
+      Ooze_boss_attack3_3: -241387710229224648
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

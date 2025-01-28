@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Demon_Boss_Animations_0: 9155210235584091341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

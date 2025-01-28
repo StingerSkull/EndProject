@@ -885,7 +885,37 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Elemental_attack3_0: -3228467988377802395
+      Elemental_attack3_1: 8328686557125394612
+      Elemental_attack3_10: 3239366084510594471
+      Elemental_attack3_11: -989429932965298458
+      Elemental_attack3_12: 5551587209750973491
+      Elemental_attack3_13: 1429739304278311939
+      Elemental_attack3_14: -6359293572078817169
+      Elemental_attack3_15: 1730237251415592682
+      Elemental_attack3_16: 1745691565602004924
+      Elemental_attack3_17: -6184209173441601687
+      Elemental_attack3_18: -8909111445741735439
+      Elemental_attack3_19: -3159938057683214598
+      Elemental_attack3_2: 6070094649220422488
+      Elemental_attack3_20: 6180248820486517961
+      Elemental_attack3_21: -1611129190851721070
+      Elemental_attack3_22: 8916019941389664744
+      Elemental_attack3_23: -6827360096278770827
+      Elemental_attack3_24: 3931953052222120264
+      Elemental_attack3_25: 6663631571326888486
+      Elemental_attack3_26: -5777971825567067111
+      Elemental_attack3_27: 668879370512630648
+      Elemental_attack3_28: 7807275261323219172
+      Elemental_attack3_29: 2931132325450367004
+      Elemental_attack3_3: -8016820944283253898
+      Elemental_attack3_4: -6160172332531676463
+      Elemental_attack3_5: 1356797839919274862
+      Elemental_attack3_6: -2318947316347586728
+      Elemental_attack3_7: 3397858234973969813
+      Elemental_attack3_8: -317945567778944012
+      Elemental_attack3_9: -6815741492049972474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

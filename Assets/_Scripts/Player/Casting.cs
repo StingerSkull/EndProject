@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Casting : MonoBehaviour
@@ -7,6 +8,7 @@ public class Casting : MonoBehaviour
     public GameObject sprite;
     public Animator animator;
     public Movement2D movement;
+    public event Action OnSpellsInitialized;
 
     public bool canCast = true;
     public bool inputCast1 = false;
@@ -34,7 +36,7 @@ public class Casting : MonoBehaviour
         {
             secondSpell = Instantiate(prefabSecondSpell, sprite.transform).GetComponent<ISpell>();
         }
-
+        OnSpellsInitialized?.Invoke();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class Casting : MonoBehaviour
         {
             if (firstSpell != null)
             {
-                if (inputCast1 && !firstSpell.IsOnCooldown() && !animCast1)
+                if (inputCast1 && firstSpell.OnCooldown() <= 0f && !animCast1)
                 {
                     animCast = false;
                     animator.SetTrigger("Cast");
@@ -60,7 +62,7 @@ public class Casting : MonoBehaviour
             
             if (secondSpell != null)
             {
-                if (inputCast2 && !secondSpell.IsOnCooldown() && !animCast2)
+                if (inputCast2 && secondSpell.OnCooldown() <= 0f && !animCast2)
                 {
                     animCast = false;
                     animator.SetTrigger("Cast");
