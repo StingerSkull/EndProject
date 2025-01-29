@@ -34,13 +34,13 @@ public class BigMushroom : MonoBehaviour
     void Update()
     {
         CheckLedgeAndWall();
-        Flip();
     }
 
     private void FixedUpdate()
     {
         UpdatePlatformerSpeed();
         Move();
+        Flip();
     }
 
     #region Move

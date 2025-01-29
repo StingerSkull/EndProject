@@ -35,7 +35,6 @@ public class GoblinMelee : MonoBehaviour
     void Update()
     {
         CheckLedgeAndWall();
-        Flip();
 
     }
 
@@ -43,6 +42,7 @@ public class GoblinMelee : MonoBehaviour
     {
         UpdatePlatformerSpeed();
         Move();
+        Flip();
     }
 
     #region Move
@@ -120,7 +120,6 @@ public class GoblinMelee : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log(collision.gameObject);
             GameObject player = collision.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {

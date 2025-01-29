@@ -13,7 +13,7 @@ public class PlayerDamage : MonoBehaviour
     public float hurtTimer = 0f;
 
     public Transform start;
-    public CinemachineCamera cinemachineCamera;
+    public CinemachineCamera cinemachineCamera; 
 
     public UnityEvent playerHurt;
     public UnityEvent playerDeath;

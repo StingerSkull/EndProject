@@ -10,8 +10,8 @@ public class UiSpellCooldown : MonoBehaviour
     private float maxCdSpell1;
     private float maxCdSpell2;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Awake()
     {
         casting.OnSpellsInitialized += InitializeCooldowns;
     }
@@ -19,10 +19,9 @@ public class UiSpellCooldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(casting.firstSpell.OnCooldown());
-        spellCD1.fillAmount = 1-(casting.firstSpell.OnCooldown() / maxCdSpell1);
+        spellCD1.fillAmount = 1f-(casting.firstSpell.OnCooldown() / maxCdSpell1);
         Color color1 = spellCD1.color;
-        color1.a =  Mathf.Pow(1 - (casting.firstSpell.OnCooldown() / maxCdSpell1),3);
+        color1.a =  Mathf.Pow(1f - (casting.firstSpell.OnCooldown() / maxCdSpell1),3f);
         spellCD1.color = color1;
 
         // spellCD2.fillAmount = casting.secondSpell.OnCooldown() / maxCdSpell2; 
@@ -31,8 +30,6 @@ public class UiSpellCooldown : MonoBehaviour
     void InitializeCooldowns()
     {
         maxCdSpell1 = casting.firstSpell?.GetSpellData().cooldown ?? 0;
-        maxCdSpell2 = casting.secondSpell?.GetSpellData().cooldown ?? 0;
-
-        Debug.Log(maxCdSpell1);
+        //maxCdSpell2 = casting.secondSpell?.GetSpellData().cooldown ?? 0;
     }
 }

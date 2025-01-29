@@ -67,7 +67,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -81,7 +81,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,7 +104,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -159,17 +159,38 @@ TextureImporter:
       name: HugeMushroom_attack3_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 0
-        width: 12
-        height: 10
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 8, y: -32}
+        - {x: 12, y: -36}
+        - {x: 30, y: -36}
+        - {x: 36, y: -34}
+        - {x: 36, y: 25}
+        - {x: 35, y: 28}
+        - {x: 10, y: 28}
+        - {x: 8, y: 27}
+        - {x: 3, y: 25}
+        - {x: -2, y: 20}
+        - {x: -5, y: 13}
+        - {x: -10, y: -5}
+        - {x: -10, y: -36}
+        - {x: 7, y: -36}
+      - - {x: -16, y: -31}
+        - {x: -17, y: -28}
+        - {x: -21, y: -25}
+        - {x: -25, y: -25}
+        - {x: -29, y: -31}
+        - {x: -29, y: -36}
+        - {x: -15, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: 9fa9134f47b27dc60800000000000000
       internalID: 7842785057402100473
@@ -181,17 +202,28 @@ TextureImporter:
       name: HugeMushroom_attack3_1
       rect:
         serializedVersion: 2
-        x: 27
+        x: 72
         y: 0
-        width: 44
-        height: 63
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 36, y: -34}
+        - {x: 36, y: 26}
+        - {x: 34, y: 28}
+        - {x: -5, y: 28}
+        - {x: -14, y: 10}
+        - {x: -14, y: -19.71428}
+        - {x: -18, y: -18}
+        - {x: -25, y: -18}
+        - {x: -33, y: -26}
+        - {x: -33, y: -36}
+        - {x: 33, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: 9bee413fe48d69ae0800000000000000
       internalID: -1542807988730532167
@@ -203,17 +235,24 @@ TextureImporter:
       name: HugeMushroom_attack3_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 144
         y: 0
-        width: 22
-        height: 17
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 36, y: -18}
+        - {x: 36, y: 5}
+        - {x: 32, y: 27}
+        - {x: 0, y: 27}
+        - {x: -35, y: -15}
+        - {x: -35, y: -36}
+        - {x: 29, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: bf10981483f9cd350800000000000000
       internalID: 6042879863990845947
@@ -225,17 +264,24 @@ TextureImporter:
       name: HugeMushroom_attack3_3
       rect:
         serializedVersion: 2
-        x: 95
+        x: 216
         y: 0
-        width: 49
-        height: 63
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 30, y: 23}
+        - {x: 26, y: 29}
+        - {x: 1, y: 29}
+        - {x: -7, y: 23}
+        - {x: -35, y: -12}
+        - {x: -35, y: -36}
+        - {x: 30, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: d9e8ada63be6036f0800000000000000
       internalID: -706943424626258275
@@ -247,17 +293,25 @@ TextureImporter:
       name: HugeMushroom_attack3_4
       rect:
         serializedVersion: 2
-        x: 146
+        x: 288
         y: 0
-        width: 26
-        height: 24
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -9, y: -36}
+        - {x: 29, y: -36}
+        - {x: 29, y: 29}
+        - {x: 2, y: 29}
+        - {x: -9, y: 25}
+        - {x: -35, y: -9}
+        - {x: -35, y: -36}
+        - {x: -11, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: d01d9a51f6cbb89f0800000000000000
       internalID: -465070951211871987
@@ -269,130 +323,28 @@ TextureImporter:
       name: HugeMushroom_attack3_5
       rect:
         serializedVersion: 2
-        x: 165
+        x: 360
         y: 0
-        width: 50
-        height: 62
+        width: 72
+        height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: 36, y: -23}
+        - {x: 36, y: 8}
+        - {x: 31, y: 27}
+        - {x: 0, y: 27}
+        - {x: -16, y: 5}
+        - {x: -16, y: -30}
+        - {x: -14, y: -36}
+        - {x: 31, y: -36}
+      tessellationDetail: 0
       bones: []
       spriteID: b98bacf3cdd657e70800000000000000
       internalID: 9112310213784549531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HugeMushroom_attack3_6
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 0
-        width: 26
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0837ff1f4ff14bd80800000000000000
-      internalID: -8235922681661262976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HugeMushroom_attack3_7
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 0
-        width: 47
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4b589f655c527f1d0800000000000000
-      internalID: -3317141071037102668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HugeMushroom_attack3_8
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 0
-        width: 26
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c3a11a7ab967ba00800000000000000
-      internalID: 772202110750139336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HugeMushroom_attack3_9
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 0
-        width: 47
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 13f7a3575735494c0800000000000000
-      internalID: -4281705581779452111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HugeMushroom_attack3_10
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 0
-        width: 50
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 672e1f68457f190e0800000000000000
-      internalID: -2264757195177336202
       vertices: []
       indices: 
       edges: []
@@ -401,7 +353,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f009d1d8a6e816641959ed9c9c5b8562
     internalID: 0
     vertices: []
     indices: 
@@ -413,15 +365,10 @@ TextureImporter:
     nameFileIdTable:
       HugeMushroom_attack3_0: 7842785057402100473
       HugeMushroom_attack3_1: -1542807988730532167
-      HugeMushroom_attack3_10: -2264757195177336202
       HugeMushroom_attack3_2: 6042879863990845947
       HugeMushroom_attack3_3: -706943424626258275
       HugeMushroom_attack3_4: -465070951211871987
       HugeMushroom_attack3_5: 9112310213784549531
-      HugeMushroom_attack3_6: -8235922681661262976
-      HugeMushroom_attack3_7: -3317141071037102668
-      HugeMushroom_attack3_8: 772202110750139336
-      HugeMushroom_attack3_9: -4281705581779452111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

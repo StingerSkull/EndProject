@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -271,7 +269,6 @@ public class Movement2D : MonoBehaviour
     {
         HandlePlatformerMovement();
         CanCast();
-        Debug.Log(input);
     }
 
     private void FixedUpdate()
@@ -305,22 +302,16 @@ public class Movement2D : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Disabled:
-                Debug.Log("Disabled");
                 break;
             case InputActionPhase.Waiting:
-                Debug.Log("Waiting");
                 break;
             case InputActionPhase.Started:
-                Debug.Log("Started");
                 break;
             case InputActionPhase.Performed:
                 input = context.ReadValue<Vector2>();
                 lastinput = context.ReadValue<Vector2>();
-                Debug.Log("Performed : " + input);
-
                 break;
             case InputActionPhase.Canceled:
-                Debug.Log("Canceled");
                 input = Vector2.zero;
                 lastinput = Vector2.zero;
                 break;
@@ -412,24 +403,7 @@ public class Movement2D : MonoBehaviour
 
     void GetPlatformerInput()
     {
-/*        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(jumpButton))
-        {
-            PressJumpButton();
-
-        }
-        if (Input.GetKeyUp(jumpButton))
-        {
-            isHoldingJumpButton = false;
-        }
-        if (Input.GetKeyDown(dashButton))
-        {
-            DashPressed();
-
-        }
-*/
         DoDash();
         Jump();
     }
@@ -514,7 +488,7 @@ public class Movement2D : MonoBehaviour
 
     void DoDash() { 
 
-        if ((canDash && isPressedDashButton) && !isDashing && Dash && ((horizontalDash && currentHorizontalSpeed != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
+        if ((canDash && isPressedDashButton) && !isDashing && Dash && ((horizontalDash && currentHorizontalSpeed != 0 && input.x != 0) || (verticalDash && input.y != 0)) && dashCoolTimer <= 0f)
         {
 
             if (!isGrounded)
