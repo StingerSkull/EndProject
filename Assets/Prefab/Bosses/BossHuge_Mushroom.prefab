@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 6942980037886124497, guid: abea94491071d7d4982684c6d3d7bdbd, type: 3}
+  m_Sprite: {fileID: -4900747841287639866, guid: 7f3b3874f17822b4e84b3f06cb2a3090, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 2119808363540677554}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 129e0fd4cf3f50445b9456ebb40eb5d8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2875c19e8244ea84382531ef5fc1309b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -146,8 +146,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.18573403, y: -0.17512524}
-  m_Size: {x: 0.69588137, y: 0.9735038}
+  m_Offset: {x: 0.3990531, y: -0.14154714}
+  m_Size: {x: 1.3911433, y: 1.9571418}
   m_Direction: 0
 --- !u!82 &5102745904532599499
 AudioSource:
@@ -324,7 +324,7 @@ MonoBehaviour:
   rb2: {fileID: 4171509062036926088}
   movementSpeed: 2
   velocity: 0
-  ledgeCheckOffset: {x: 0.3, y: -0.5}
+  ledgeCheckOffset: {x: 0.35, y: -1}
   ledgeCheckDistance: 0.3
   ledgeCheckLayer:
     serializedVersion: 2

@@ -15,6 +15,8 @@ public class BossHugeMushroom : MonoBehaviour
     public Transform spriteTransform;
     public Rigidbody2D rb2;
 
+    public GameObject prefabMushrooms;
+
     [Space]
     //[Header("SPEED VALUES")]
     [Range(1, 10)]
@@ -38,20 +40,48 @@ public class BossHugeMushroom : MonoBehaviour
         facingRight = false;
 
         fsm = new StateMachine<BossHugeMushroomStates>();
-        /*
-                #region States
-                fsm.AddState(BossHugeMushroomStates.IDLE, new BossHugeMushroomIdleState<BossHugeMushroomStates>(this));
-                fsm.AddState(BossHugeMushroomStates.MOVE, new BossHugeMushroomMoveState<BossHugeMushroomStates>(this));
-                fsm.AddState(BossHugeMushroomStates.ATTACK, new BossHugeMushroomAttackState<BossHugeMushroomStates>(this));
-                fsm.AddState(BossHugeMushroomStates.DEAD, new BossHugeMushroomDeadState<BossHugeMushroomStates>(this));
+        
+        #region States
+        fsm.AddState(BossHugeMushroomStates.IDLE, new BossHugeMushroomIdleState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.MOVE, new BossHugeMushroomMoveState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.ATTACK, new BossHugeMushroomAttackState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.DEAD, new BossHugeMushroomDeadState<BossHugeMushroomStates>(this));
+        #endregion
 
-                #endregion*/
+        fsm.SetStartState(BossHugeMushroomStates.IDLE);
+        /*
+        #region StateTransition
+        #region IDLE
+
+        #endregion
+
+        #region MOVE
+        fsm.AddTransition(EnemyStates.PATROL, EnemyStates.CHASE,
+            transition => detectorCollider.objectFound);
+
+        #endregion
+
+        #region ATTACK
+        fsm.AddTransition(EnemyStates.CHASE, EnemyStates.SEEK,
+            transition => !detectorCollider.objectFound && timer > timerChase);
+
+        #endregion
+
+        #region ALL
+        fsm.AddTransitionFromAny(EnemyStates.DEAD,
+            transition => dead);
+
+        #endregion
+        #endregion
+        */
+        fsm.Init();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckLedgeAndWall();
+        fsm.OnLogic();
     }
 
     private void FixedUpdate()
