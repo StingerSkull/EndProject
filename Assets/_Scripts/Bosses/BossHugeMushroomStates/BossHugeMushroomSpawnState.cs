@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityHFSM;
 
-public class BossHugeMushroomMoveState<T> : StateBase<BossHugeMushroom.BossHugeMushroomStates>
+public class BossHugeMushroomSpawnState<T> : StateBase<BossHugeMushroom.BossHugeMushroomStates>
 {
     private BossHugeMushroom _boss;
 
-    public BossHugeMushroomMoveState(BossHugeMushroom boss) : base(needsExitTime: false, isGhostState: false)
+    public BossHugeMushroomSpawnState(BossHugeMushroom boss) : base(needsExitTime: false, isGhostState: false)
     {
         _boss = boss;
     }

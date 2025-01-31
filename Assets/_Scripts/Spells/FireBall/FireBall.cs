@@ -11,17 +11,19 @@ public class FireBall : MonoBehaviour
     public AnimationClip explosionClip;
     public SoundData explosionSounds;
     private float maxSoundLength = 0f;
+    private float explosionDuration = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2.linearVelocity = transform.right * projectileSpeed;
-        StartCoroutine(TimeBeforeExplose());
         maxSoundLength = 0f;
         foreach(AudioClip audioClip in explosionSounds.sounds)
         {
             maxSoundLength = Mathf.Max(maxSoundLength, audioClip.length);
         }
+        explosionDuration = Mathf.Max(maxSoundLength, explosionClip.length);
+        StartCoroutine(TimeBeforeExplose());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,13 +32,13 @@ public class FireBall : MonoBehaviour
         {
             Destroy(collision.transform.parent.gameObject);
             GameObject explosionEffectEnemy = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
-            Destroy(explosionEffectEnemy, Mathf.Max(maxSoundLength, explosionClip.length));
+            Destroy(explosionEffectEnemy, explosionDuration);
             Destroy(gameObject);
         }
         else
         {
             GameObject explosionEffect = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
-            Destroy(explosionEffect, Mathf.Max(maxSoundLength, explosionClip.length));
+            Destroy(explosionEffect, explosionDuration);
             Destroy(gameObject);
         }
 
@@ -48,7 +50,7 @@ public class FireBall : MonoBehaviour
         if (!gameObject.IsDestroyed())
         {
             GameObject newEffect = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
-            Destroy(newEffect, Mathf.Max(maxSoundLength, explosionClip.length));
+            Destroy(newEffect, explosionDuration);
             Destroy(gameObject);
         }
     }

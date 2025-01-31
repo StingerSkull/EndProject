@@ -122,8 +122,8 @@ public class BigMushroom : MonoBehaviour
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
                 player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
-                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForceX;
-                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.contacts[0].normal.y * pushForceY;
+                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
+                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
             }
         }
     }

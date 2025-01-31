@@ -9,4 +9,19 @@ public class BossHugeMushroomDeadState<T> : StateBase<BossHugeMushroom.BossHugeM
     {
         _boss = boss;
     }
+    public override void Init() { }
+
+    public override void OnEnter()
+    {
+    }
+
+    public override void OnLogic()
+    {
+    }
+
+    public override void OnExit()
+    {
+    }
+
+    public override void OnExitRequest() { }
 }

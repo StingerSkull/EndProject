@@ -6,22 +6,31 @@ public class BossHugeMushroom : MonoBehaviour
     public StateMachine<BossHugeMushroomStates> fsm;
     public enum BossHugeMushroomStates
     {
-        IDLE, MOVE, ATTACK, DEAD
+        IDLE, MOVE, HOME, MELEEATTACK, MUSHROOMATTACK, SPAWN, DEAD
     }
-
-    
 
     public Animator animator;
     public Transform spriteTransform;
     public Rigidbody2D rb2;
 
+    public Transform mushSpawner;
     public GameObject prefabMushrooms;
+
+    public GameObject player;
+    public float detectRange = 10f;
+    public float attackRange = 4f;
+
+    public float pauseTimer = 2f;
+    public float pauseChrono = 0f;
+
+    public int rdmSkill = 0;
 
     [Space]
     //[Header("SPEED VALUES")]
     [Range(1, 10)]
-    [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float velocity = 0f;
+    public float movementSpeed = 5f;
+    public float currentMovementSpeed = 5f;
+    public float velocity = 0f;
 
     [SerializeField] Vector2 ledgeCheckOffset = new(1f, 1f);
     [SerializeField] float ledgeCheckDistance = 1f;
@@ -40,40 +49,81 @@ public class BossHugeMushroom : MonoBehaviour
         facingRight = false;
 
         fsm = new StateMachine<BossHugeMushroomStates>();
-        
+
         #region States
+
         fsm.AddState(BossHugeMushroomStates.IDLE, new BossHugeMushroomIdleState<BossHugeMushroomStates>(this));
         fsm.AddState(BossHugeMushroomStates.MOVE, new BossHugeMushroomMoveState<BossHugeMushroomStates>(this));
-        fsm.AddState(BossHugeMushroomStates.ATTACK, new BossHugeMushroomAttackState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.HOME, new BossHugeMushroomHomeState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.MELEEATTACK, new BossHugeMushroomMeleeAttackState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.MUSHROOMATTACK, new BossHugeMushroomMushroomAttackState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.SPAWN, new BossHugeMushroomSpawnState<BossHugeMushroomStates>(this));
         fsm.AddState(BossHugeMushroomStates.DEAD, new BossHugeMushroomDeadState<BossHugeMushroomStates>(this));
         #endregion
 
         fsm.SetStartState(BossHugeMushroomStates.IDLE);
-        /*
+        
         #region StateTransition
         #region IDLE
-
+        fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MOVE,
+            transition => Vector2.Distance(transform.position, player.transform.position) < detectRange
+            && Vector2.Distance(transform.position, player.transform.position) > attackRange
+            && pauseTimer <=0);
+        fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MELEEATTACK,
+            transition => Vector2.Distance(transform.position, player.transform.position) < attackRange
+            && rdmSkill == 0
+            && pauseTimer <= 0);
+        fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MUSHROOMATTACK,
+            transition => Vector2.Distance(transform.position, player.transform.position) < attackRange
+            && rdmSkill == 1
+            && pauseTimer <= 0);
+        fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.SPAWN,
+            transition => Vector2.Distance(transform.position, player.transform.position) < attackRange
+            && rdmSkill == 2
+            && pauseTimer <= 0);
         #endregion
 
         #region MOVE
-        fsm.AddTransition(EnemyStates.PATROL, EnemyStates.CHASE,
-            transition => detectorCollider.objectFound);
+        fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.IDLE,
+            transition => Vector2.Distance(transform.position, player.transform.position) > detectRange);
+        fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.MELEEATTACK,
+            transition => false);
+        fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.MUSHROOMATTACK,
+            transition => false);
+        fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.SPAWN,
+            transition => false);
+        #endregion
+
+        #region MELEEATTACK
+        fsm.AddTransition(BossHugeMushroomStates.MELEEATTACK, BossHugeMushroomStates.IDLE,
+            transition => false);
+        fsm.AddTransition(BossHugeMushroomStates.MELEEATTACK, BossHugeMushroomStates.MOVE,
+            transition => false);
 
         #endregion
 
-        #region ATTACK
-        fsm.AddTransition(EnemyStates.CHASE, EnemyStates.SEEK,
-            transition => !detectorCollider.objectFound && timer > timerChase);
+        #region MUSHROOMATTACK
+        fsm.AddTransition(BossHugeMushroomStates.MUSHROOMATTACK, BossHugeMushroomStates.IDLE,
+            transition => false);
+        fsm.AddTransition(BossHugeMushroomStates.MUSHROOMATTACK, BossHugeMushroomStates.MOVE,
+            transition => false);
+
+        #endregion
+        #region SPAWN
+        fsm.AddTransition(BossHugeMushroomStates.SPAWN, BossHugeMushroomStates.IDLE,
+            transition => false);
+        fsm.AddTransition(BossHugeMushroomStates.SPAWN, BossHugeMushroomStates.MOVE,
+            transition => false);
 
         #endregion
 
         #region ALL
-        fsm.AddTransitionFromAny(EnemyStates.DEAD,
-            transition => dead);
+        fsm.AddTransitionFromAny(BossHugeMushroomStates.DEAD,
+            transition => false);
 
         #endregion
         #endregion
-        */
+        
         fsm.Init();
     }
 
@@ -170,8 +220,8 @@ public class BossHugeMushroom : MonoBehaviour
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
                 player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
-                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.contacts[0].normal.x * pushForceX;
-                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.contacts[0].normal.y * pushForceY;
+                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
+                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
             }
         }
     }
