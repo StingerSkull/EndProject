@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3052773836380698894}
   m_Layer: 9
   m_Name: HugeMushroom_champi
-  m_TagString: Enemy
+  m_TagString: EnemySpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,5 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff5a8f87ec1f464dbac08000c82f89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForceX: 1
-  pushForceY: 0.5
+  animClip: {fileID: 7400000, guid: a4916c0d5dcb73a478ec5c970e191127, type: 2}
+  pushForceY: 5

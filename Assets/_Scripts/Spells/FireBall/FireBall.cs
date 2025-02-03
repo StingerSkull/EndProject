@@ -35,7 +35,7 @@ public class FireBall : MonoBehaviour
             Destroy(explosionEffectEnemy, explosionDuration);
             Destroy(gameObject);
         }
-        else
+        else if(!collision.CompareTag("EnemySpell"))
         {
             GameObject explosionEffect = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
             Destroy(explosionEffect, explosionDuration);

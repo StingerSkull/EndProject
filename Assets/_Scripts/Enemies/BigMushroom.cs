@@ -27,7 +27,9 @@ public class BigMushroom : MonoBehaviour
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        facingRight = false;
+        facingRight = transform.right.x < 0;
+
+        isLedge = true;
     }
 
     // Update is called once per frame
@@ -46,19 +48,19 @@ public class BigMushroom : MonoBehaviour
     #region Move
     void UpdatePlatformerSpeed()
     {
-        if (facingRight && isLedge)
+        if (!facingRight && isLedge)
         {
             velocity = -movementSpeed;
         }
-        else if (facingRight && !isLedge)
+        else if (!facingRight && !isLedge)
         {
             velocity = movementSpeed;
         }
-        else if (!facingRight && isLedge)
+        else if (facingRight && isLedge)
         {
             velocity = movementSpeed;
         }
-        else if(!facingRight && !isLedge)
+        else if(facingRight && !isLedge)
         {
             velocity = -movementSpeed;
         }
@@ -70,13 +72,13 @@ public class BigMushroom : MonoBehaviour
 
         if (velocity > 0)
         {
-            facingRight = false;
+            facingRight = true;
             _enemyRot.y = 180f;
             transform.localEulerAngles = _enemyRot;
         }
         else if (velocity < 0)
         {
-            facingRight = true;
+            facingRight = false;
             _enemyRot.y = 0f;
             transform.localEulerAngles = _enemyRot;
         }

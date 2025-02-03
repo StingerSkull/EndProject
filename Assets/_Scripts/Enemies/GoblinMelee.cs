@@ -27,15 +27,14 @@ public class GoblinMelee : MonoBehaviour
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        facingRight = false;
-
+        facingRight = transform.right.x < 0;
+        isLedge = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckLedgeAndWall();
-
     }
 
     private void FixedUpdate()
@@ -48,19 +47,19 @@ public class GoblinMelee : MonoBehaviour
     #region Move
     void UpdatePlatformerSpeed()
     {
-        if (facingRight && isLedge)
+        if (!facingRight && isLedge)
         {
             velocity = -movementSpeed;
         }
+        else if (!facingRight && !isLedge)
+        {
+            velocity = movementSpeed;
+        }
+        else if (facingRight && isLedge)
+        {
+            velocity = movementSpeed;
+        }
         else if (facingRight && !isLedge)
-        {
-            velocity = movementSpeed;
-        }
-        else if (!facingRight && isLedge)
-        {
-            velocity = movementSpeed;
-        }
-        else if(!facingRight && !isLedge)
         {
             velocity = -movementSpeed;
         }
@@ -70,15 +69,15 @@ public class GoblinMelee : MonoBehaviour
     {
         Vector3 _enemyRot = transform.localEulerAngles;
 
-        if (velocity > 0f)
+        if (velocity > 0)
         {
-            facingRight = false;
+            facingRight = true;
             _enemyRot.y = 180f;
             transform.localEulerAngles = _enemyRot;
         }
-        else if (velocity < 0f)
+        else if (velocity < 0)
         {
-            facingRight = true;
+            facingRight = false;
             _enemyRot.y = 0f;
             transform.localEulerAngles = _enemyRot;
         }

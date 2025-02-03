@@ -33,7 +33,6 @@ public class Movement2D : MonoBehaviour
 
     //[Header("DASH")]
     [SerializeField] bool Dash;
-    [SerializeField] KeyCode dashButton = KeyCode.LeftShift;
     [SerializeField] bool cancelDashOnWallHit;
     //[Header("-Dash Values")]
     [Range(1f, 10f)]
@@ -129,7 +128,6 @@ public class Movement2D : MonoBehaviour
     [SerializeField] float variableJumpHeightDuration = 0.75f;
     [Range(0f, 1f)]
     [SerializeField] float jumpReleaseEffect = 0.5f;
-    [SerializeField] KeyCode jumpButton = KeyCode.Space;
     bool isHoldingJumpButton;
     float jumpHoldTimer;
     bool isForcingJump;

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7818200241910493212}
   - component: {fileID: 4636434465367794488}
   - component: {fileID: 5102745904532599499}
+  - component: {fileID: 1939606325608766086}
   m_Layer: 9
-  m_Name: Sprite
+  m_Name: BossHugeMushroomSprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +33,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4915631529679020807}
+  - {fileID: 3416139476060155634}
   m_Father: {fileID: 8890947045818067881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7576208060419908754
@@ -246,6 +249,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1939606325608766086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119808363540677554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e611c4727265ba743ac730fa988a0bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 67304506294843520}
+  meleeAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  endMeleeAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  mushroomAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  endMushroomAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  spawn:
+    m_PersistentCalls:
+      m_Calls: []
+  endSpawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5072238002484739578
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,14 +356,96 @@ MonoBehaviour:
   animator: {fileID: 7818200241910493212}
   spriteTransform: {fileID: 5494734142796545575}
   rb2: {fileID: 4171509062036926088}
-  movementSpeed: 2
-  velocity: 0
-  ledgeCheckOffset: {x: 0.35, y: -1}
-  ledgeCheckDistance: 0.3
-  ledgeCheckLayer:
+  maxLife: 5
+  currentLife: 0
+  dead: 0
+  bigSpawner: {fileID: 3416139476060155634}
+  prefabBig: {fileID: 6832325574554894529, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
+  animSpawn: 0
+  endAnimSpawn: 0
+  mushSpawner: {fileID: 4915631529679020807}
+  prefabMushrooms: {fileID: 8536463779151565431, guid: dea2e9d07029508468622b517064fa3d, type: 3}
+  animMushroomAttack: 0
+  endAnimMushroomAttack: 0
+  numMushrooms: 10
+  distanceBetweenMush: 0.7
+  offsetRayCheckY: 1
+  mushCheckLayer:
     serializedVersion: 2
     m_Bits: 1
-  isLedge: 0
-  facingRight: 0
-  pushForceX: 10
-  pushForceY: 5
+  timeBetweenMush: 0.1
+  player: {fileID: 0}
+  home: {fileID: 0}
+  detectRange: 10
+  attackRange: 4
+  pauseTimer: 2
+  pauseChrono: 0
+  rdmSkill: 0
+  movementSpeed: 2.5
+  currentMovementSpeed: 5
+  velocity: 0
+  canFlip: 0
+  pushForceX: 20
+  pushForceY: 10
+--- !u!1 &6600894382943665257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4915631529679020807}
+  m_Layer: 9
+  m_Name: MushSpawner
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4915631529679020807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600894382943665257}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.763, y: -1.1242, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5494734142796545575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8083930646388118350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3416139476060155634}
+  m_Layer: 9
+  m_Name: BigSpawner
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3416139476060155634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083930646388118350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8762002, y: -0.47000015, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5494734142796545575}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
