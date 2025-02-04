@@ -72,7 +72,6 @@ MonoBehaviour:
   - {fileID: 114382619751195976}
   - {fileID: 114071673970787052}
   - {fileID: 4698793640383739538}
-  - {fileID: 706238141080022787}
   EditorData:
     PanOffset: {x: 222.45415, y: -55.810665}
     Zoom: 0.7701224
@@ -488,22 +487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: {fileID: 114468737299288386}
   To: {fileID: 114082538834864206}
---- !u!114 &706238141080022787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Position: {x: 848, y: 368}
-  Name: Room
-  IndividualRoomTemplates: []
-  RoomTemplateSets: []
 --- !u!114 &1201854379766036420
 MonoBehaviour:
   m_ObjectHideFlags: 0

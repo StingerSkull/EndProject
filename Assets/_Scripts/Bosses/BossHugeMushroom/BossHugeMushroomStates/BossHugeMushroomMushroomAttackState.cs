@@ -27,7 +27,7 @@ public class BossHugeMushroomMushroomAttackState<T> : StateBase<BossHugeMushroom
     {
         if (_boss.animMushroomAttack)
         {
-            _boss.CoroutineMushrooms(_boss.transform.right.x);
+            _boss.CoroutineMushrooms(_boss.mushSpawner.position, _boss.transform.right.x);
             _boss.animMushroomAttack= false;
         }
     }

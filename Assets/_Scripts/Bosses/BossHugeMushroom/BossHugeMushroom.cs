@@ -1,4 +1,3 @@
-using Edgar.Graphs;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -60,6 +59,7 @@ public class BossHugeMushroom : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
         rb2 = GetComponent<Rigidbody2D>();
         canFlip = true;
         currentLife = maxLife;
@@ -244,17 +244,17 @@ public class BossHugeMushroom : MonoBehaviour
         }
     }
 
-    public void CoroutineMushrooms(float rotation)
+    public void CoroutineMushrooms(Vector2 spawnerPos, float rotation)
     {
-        StartCoroutine(CreateMushrooms(rotation));
+        StartCoroutine(CreateMushrooms(spawnerPos, rotation));
     }
 
-    public IEnumerator CreateMushrooms(float rotation)
+    public IEnumerator CreateMushrooms(Vector2 spawnerPos, float rotation)
     {
         int maxNumMushrooms = CheckMaxNumberMushrooms();
         for (int i = 0; i < maxNumMushrooms; i++)
         {
-            Instantiate(prefabMushrooms, new Vector2(mushSpawner.position.x - rotation * i * distanceBetweenMush, mushSpawner.position.y), Quaternion.identity);
+            Instantiate(prefabMushrooms, new Vector2(spawnerPos.x - rotation * i * distanceBetweenMush, spawnerPos.y), Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenMush);
         }
     }

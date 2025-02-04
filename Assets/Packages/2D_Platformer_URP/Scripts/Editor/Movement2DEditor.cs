@@ -72,7 +72,6 @@ public class Movement2DEditor : Editor
         EditorGUILayout.PropertyField(_dash);
         if (_dash.boolValue)
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("dashButton"), new GUIContent("Dash Button", "Button for dashing"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("cancelDashOnWallHit"), new GUIContent("Cancel Dash On Wall Hit", "Whether dash should be canceled upon hitting a wall."));
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("dashDistance"), new GUIContent("Dash Distance", "Distance covered by dash."));
@@ -213,7 +212,6 @@ public class Movement2DEditor : Editor
         EditorGUILayout.LabelField("Jump Adjustments", mainHeader);
         EditorGUILayout.Space(headerBottomSpace);
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpButton"), new GUIContent("Jump Button", "Button for jumping"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("coyoteTime"), new GUIContent("Coyote Time", "Allows the player to still jump shortly after leaving a platform,making jumps more forgiving."));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("jumpBuffer"), new GUIContent("Jump Buffer", "Allows the player to jump even if the jump button is pressed slightly before landing, making jumps more forgiving."));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("onAirControl"), new GUIContent("On Air Control", "Determines how much control the player has while in the air. A value of 0 means no control, and 1 means full control."));

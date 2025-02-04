@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1316493835247018082, guid: 8119d94a641c9be47bbfa9aa3d4b4e6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -534,7 +534,6 @@ MonoBehaviour:
   speedDownDuration: 0.06
   stopDuration: 0.15
   Dash: 1
-  dashButton: 304
   cancelDashOnWallHit: 1
   dashDistance: 3
   dashDuration: 0.315
@@ -589,7 +588,6 @@ MonoBehaviour:
   onAirControl: 0.75
   variableJumpHeightDuration: 1
   jumpReleaseEffect: 0.5
-  jumpButton: 32
   LedgeGrab: 1
   autoClimbLedge: 1
   climbButton: 119
@@ -678,6 +676,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   movement: {fileID: 0}
   canCast: 1
+  inputCast1: 0
+  inputCast2: 0
   animCast1: 0
   animCast2: 0
   animCast: 0
@@ -698,6 +698,8 @@ MonoBehaviour:
   currentLife: 0
   hurtCooldown: 0.5
   hurtTimer: 0
+  start: {fileID: 0}
+  cinemachineCamera: {fileID: 0}
   playerHurt:
     m_PersistentCalls:
       m_Calls: []
