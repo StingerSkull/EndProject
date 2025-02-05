@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6811423936459929492}
   - component: {fileID: 284681496866225699}
   m_Layer: 3
-  m_Name: Sprite
+  m_Name: PlayerSprite
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

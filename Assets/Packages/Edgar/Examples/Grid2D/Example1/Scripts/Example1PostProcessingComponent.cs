@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Edgar.Unity.Examples.Example1
 {
@@ -27,26 +28,40 @@ namespace Edgar.Unity.Examples.Example1
                 var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Enemies");
 
                 // Skip this room if there are no enemies
-                if (enemiesHolder == null)
+                if (enemiesHolder == null || enemiesHolder.childCount == 0)
                 {
                     continue;
                 }
 
-                // Iterate through all enemies (children of the enemiesHolder)
+                int totalEnemies = enemiesHolder.childCount;
+                int minEnemiesToSpawn = Mathf.CeilToInt(totalEnemies / 2f); // Au moins la moitié
+                int spawnedEnemies = 0;
+                List<GameObject> potentialSpawns = new();
+
+                // Étape 1 : Application du spawn aléatoire
                 foreach (Transform enemyTransform in enemiesHolder)
                 {
                     var enemy = enemyTransform.gameObject;
 
-                    // Roll a dice and check whether to spawn this enemy or not
-                    // Use the provided Random instance so that the whole generator uses the same seed and the results can be reproduced
                     if (Random.NextDouble() < EnemySpawnChance)
                     {
                         enemy.SetActive(true);
+                        spawnedEnemies++;
                     }
                     else
                     {
                         enemy.SetActive(false);
+                        potentialSpawns.Add(enemy); // On garde en mémoire les désactivés
                     }
+                }
+
+                // Étape 2 : Forcer l'activation si besoin
+                while (spawnedEnemies < minEnemiesToSpawn && potentialSpawns.Count > 0)
+                {
+                    int index = UnityEngine.Random.Range(0, potentialSpawns.Count); // Sélection aléatoire
+                    potentialSpawns[index].SetActive(true);
+                    potentialSpawns.RemoveAt(index); // On évite de réactiver le même
+                    spawnedEnemies++;
                 }
             }
         }

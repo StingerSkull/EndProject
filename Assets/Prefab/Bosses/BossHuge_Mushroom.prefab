@@ -149,8 +149,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.3990531, y: -0.14154714}
-  m_Size: {x: 1.3911433, y: 1.9571418}
+  m_Offset: {x: 0.25839853, y: -0.14154714}
+  m_Size: {x: 1.3911428, y: 1.9571418}
   m_Direction: 0
 --- !u!82 &5102745904532599499
 AudioSource:
@@ -379,8 +379,11 @@ MonoBehaviour:
   mushCheckLayer:
     serializedVersion: 2
     m_Bits: 1
-  timeBetweenMush: 0.1
+  timeBetweenMush: 0.15
   player: {fileID: 0}
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 9
   detectRange: 10
   attackRange: 4
   home: {fileID: 0}

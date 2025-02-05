@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityHFSM;
 
 public class BossHugeMushroom : MonoBehaviour
@@ -47,6 +48,7 @@ public class BossHugeMushroom : MonoBehaviour
 
     [Header("Player detection")]
     public GameObject player;
+    public LayerMask collisionLayer;
     public float detectRange = 10f;
     public float attackRange = 4f;
 
@@ -86,6 +88,7 @@ public class BossHugeMushroom : MonoBehaviour
         #region IDLE
         fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MOVE,
             transition => Vector2.Distance(transform.position, player.transform.position) <= detectRange
+            && CheckDetectRange()
             && Vector2.Distance(transform.position, player.transform.position) > attackRange
             && pauseChrono <=0);
         fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.HOME,
@@ -94,14 +97,17 @@ public class BossHugeMushroom : MonoBehaviour
             && pauseChrono <=0);
         fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MELEEATTACK,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 0
             && pauseChrono <= 0);
         fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.MUSHROOMATTACK,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 1
             && pauseChrono <= 0);
         fsm.AddTransition(BossHugeMushroomStates.IDLE, BossHugeMushroomStates.SPAWN,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 2
             && pauseChrono <= 0);
         #endregion
@@ -111,12 +117,15 @@ public class BossHugeMushroom : MonoBehaviour
             transition => Vector2.Distance(transform.position, player.transform.position) > detectRange);
         fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.MELEEATTACK,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 0);
         fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.MUSHROOMATTACK,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 1);
         fsm.AddTransition(BossHugeMushroomStates.MOVE, BossHugeMushroomStates.SPAWN,
             transition => Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange()
             && rdmSkill == 2);
         #endregion
 
@@ -132,10 +141,12 @@ public class BossHugeMushroom : MonoBehaviour
         fsm.AddTransition(BossHugeMushroomStates.MUSHROOMATTACK, BossHugeMushroomStates.IDLE,
             transition => endAnimMushroomAttack
             && (Vector2.Distance(transform.position, player.transform.position) > detectRange
-            || Vector2.Distance(transform.position, player.transform.position) <= attackRange));
+            || (Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange())));
         fsm.AddTransition(BossHugeMushroomStates.MUSHROOMATTACK, BossHugeMushroomStates.MOVE,
             transition => endAnimMushroomAttack
             && Vector2.Distance(transform.position, player.transform.position) <= detectRange
+            && CheckDetectRange()
             && Vector2.Distance(transform.position, player.transform.position) > attackRange
             && pauseChrono <=0 );
 
@@ -145,10 +156,12 @@ public class BossHugeMushroom : MonoBehaviour
         fsm.AddTransition(BossHugeMushroomStates.SPAWN, BossHugeMushroomStates.IDLE,
             transition => endAnimSpawn
             && (Vector2.Distance(transform.position, player.transform.position) > detectRange
-            || Vector2.Distance(transform.position, player.transform.position) <= attackRange));
+            || (Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange())));
         fsm.AddTransition(BossHugeMushroomStates.SPAWN, BossHugeMushroomStates.MOVE,
             transition => endAnimSpawn
             && Vector2.Distance(transform.position, player.transform.position) <= detectRange
+            && CheckDetectRange()
             && Vector2.Distance(transform.position, player.transform.position) > attackRange
             && pauseChrono <= 0);
 
@@ -176,7 +189,6 @@ public class BossHugeMushroom : MonoBehaviour
         {
             pauseChrono -= Time.deltaTime;
         }
-        Debug.Log(fsm.ActiveStateName);
         fsm.OnLogic();
     }
 
@@ -189,11 +201,12 @@ public class BossHugeMushroom : MonoBehaviour
     #region Move
     void UpdatePlatformerSpeed()
     {
+
         Vector2 angleVector = (player.transform.position - transform.position);
         velocity = angleVector.normalized.x * currentMovementSpeed;
 
 
-        if (canFlip)
+        if (canFlip && CheckDetectRange())
         {
             Vector3 _enemyRot = transform.localEulerAngles;
             if (angleVector.normalized.x > 0)
@@ -216,6 +229,29 @@ public class BossHugeMushroom : MonoBehaviour
     }
     #endregion
 
+    public bool CheckDetectRange()
+    {
+        
+        bool detected = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, detectRange, collisionLayer);
+        if (hit)
+        {
+            detected = hit.transform.CompareTag("Player");
+        }
+        return detected;
+    }
+    
+    public bool CheckAttackRange()
+    {
+
+        bool detected = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, attackRange, collisionLayer);
+        if (hit)
+        {
+            detected = hit.transform.CompareTag("Player");
+        }
+        return detected;
+    }
 
     #region Collider
     private void OnCollisionEnter2D(Collision2D collision)
@@ -267,6 +303,8 @@ public class BossHugeMushroom : MonoBehaviour
         return _hit ? (int)(Mathf.Abs(_hit.point.x - transform.position.x) / distanceBetweenMush) : numMushrooms;
     }
 
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -277,5 +315,22 @@ public class BossHugeMushroom : MonoBehaviour
         Gizmos.color = Color.magenta;
         Vector2 rayOrigin = new(transform.position.x, transform.position.y - offsetRayCheckY);
         Gizmos.DrawRay(rayOrigin, -transform.right * numMushrooms * distanceBetweenMush);
+
+        if (player != null)
+        {
+            Gizmos.color = Color.red;
+            if (CheckDetectRange())
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * detectRange);
+
+            Gizmos.color = Color.red;
+            if (CheckAttackRange())
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * attackRange);
+        }
     }
 }
