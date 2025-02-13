@@ -14,28 +14,28 @@ public class PlayerSpawnPositionPostProcess : DungeonGeneratorPostProcessingComp
 
     private void SetSpawnPosition(DungeonGeneratorLevelGrid2D level)
     {
-        var entranceRoomInstance = level.RoomInstances.FirstOrDefault(x => (x.Room.ToString()) == "Spawn");
+        RoomInstanceGrid2D entranceRoomInstance = level.RoomInstances.FirstOrDefault(x => (x.Room.ToString()) == "Spawn");
 
         if (entranceRoomInstance == null)
         {
             throw new InvalidOperationException("Could not find Spawn room");
         }
 
-        var roomTemplateInstance = entranceRoomInstance.RoomTemplateInstance;
+        GameObject roomTemplateInstance = entranceRoomInstance.RoomTemplateInstance;
 
         // Find the spawn position marker
-        var spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
+        Transform spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
 
         // Move the player to the spawn position
-        var player = GameObject.Find("Player");
+        GameObject player = GameObject.Find("Player");
         player.transform.position = spawnPosition.position;
-        /////////////////////// HERE
-        ///need to rotate player when spawn
-        ///a
-        ///a
-        ///a
-        ///a
-        ///a
-        ///
+
+        Transform spriteChild = player.transform.Find("PlayerSprite"); // Assure-toi que le nom est correct
+
+        // Appliquer la rotation au sprite
+        if (spriteChild != null)
+        {
+            spriteChild.transform.rotation = spawnPosition.rotation; // Ajuste l'angle selon ton besoin
+        }
     }
 }

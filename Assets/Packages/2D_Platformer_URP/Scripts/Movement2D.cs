@@ -378,7 +378,8 @@ public class Movement2D : MonoBehaviour
             default:
                 break;
         }
-    }public void InputCast2(InputAction.CallbackContext context)
+    }
+    public void InputCast2(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {

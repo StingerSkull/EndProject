@@ -98,4 +98,11 @@ public class Casting : MonoBehaviour
         animCast = false;
         animCastSpell = false;
     }
+
+    public void ResetAllAnimCast()
+    {
+        animCast = false;
+        animCast1 = false;
+        animCast2 = false;
+    }
 }

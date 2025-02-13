@@ -5,15 +5,13 @@ using UnityEngine.Events;
 public class PlayerDamage : MonoBehaviour
 {
     public Animator animator;
+    public Casting casting;
 
     public int maxLife = 5;
     public int currentLife;
 
     public float hurtCooldown = 0.5f;
     public float hurtTimer = 0f;
-
-    public Transform start;
-    public CinemachineCamera cinemachineCamera; 
 
     public UnityEvent playerHurt;
     public UnityEvent playerDeath;
@@ -69,6 +67,7 @@ public class PlayerDamage : MonoBehaviour
     public void ResetAnimationTriggers()
     {
         animator.ResetTrigger("Cast");
+        casting.ResetAllAnimCast();
         animator.ResetTrigger("Jump");
     }
 
