@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerSpawnPositionPostProcess : DungeonGeneratorPostProcessingComponentGrid2D
 {
+    public CinemachineCamera virtualCamera;
 
     public override void Run(DungeonGeneratorLevelGrid2D level)
     {
@@ -29,6 +31,8 @@ public class PlayerSpawnPositionPostProcess : DungeonGeneratorPostProcessingComp
         // Move the player to the spawn position
         GameObject player = GameObject.Find("Player");
         player.transform.position = spawnPosition.position;
+        virtualCamera.PreviousStateIsValid = false;
+
 
         Transform spriteChild = player.transform.Find("PlayerSprite"); // Assure-toi que le nom est correct
 

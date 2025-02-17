@@ -272,6 +272,7 @@ public class Movement2D : MonoBehaviour
     private void FixedUpdate()
     {
         UpdatePlatformerSpeed();
+        GetPlatformerInput();
         MovePlayer();
         LedgeClimbCountdown();
 
@@ -283,7 +284,7 @@ public class Movement2D : MonoBehaviour
         CheckCeil();
         CheckGround();
         CheckLedge();
-        GetPlatformerInput();
+        //GetPlatformerInput();
         DelayInputOnWall();
         TimerDash();
         FlipThePlayer();
@@ -1026,7 +1027,10 @@ public class Movement2D : MonoBehaviour
     {
 
         runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0 && input.x != 0);
-
+        if (currentVerticalSpeed > 7.1f)
+        {
+            Debug.Log("MOVE : " + currentVerticalSpeed);
+        }
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed);
 
     }

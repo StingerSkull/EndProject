@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 6685666831266777143}
   - component: {fileID: 4522807899081119045}
   - component: {fileID: 4938669961337995820}
+  - component: {fileID: 4658117628121224697}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -540,7 +541,7 @@ MonoBehaviour:
   dashStopEffect: 1
   resetDashOnGround: 1
   resetDashOnWall: 1
-  airDash: 1
+  airDash: 0
   airDashDistance: 2.5
   airDashDuration: 0.2
   airDashStopEffect: 0.75
@@ -570,7 +571,7 @@ MonoBehaviour:
   variableJumpHeightOnWallJump: 1
   inputDelay: 0.15
   inputDelayTimer: 0
-  jumpHight: 1.5
+  jumpHight: 1.4
   jumpUpAcceleration: 2
   jumpDownAcceleration: 5
   fallSpeedClamp: 20
@@ -580,7 +581,7 @@ MonoBehaviour:
   jumpUpDuration: 0
   isNormalJumped: 0
   isWallJumped: 0
-  doubleJump: 1
+  doubleJump: 0
   numberJumps: 1
   jumpCounter: 0
   coyoteTime: 0.1
@@ -694,18 +695,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8603827925250911012}
-  maxLife: 5
+  casting: {fileID: 4522807899081119045}
+  maxLife: 100
   currentLife: 0
   hurtCooldown: 0.5
   hurtTimer: 0
-  start: {fileID: 0}
-  cinemachineCamera: {fileID: 0}
   playerHurt:
     m_PersistentCalls:
       m_Calls: []
   playerDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4658117628121224697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926573737668168927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdaaf268f1e4f9144aa5121e511c7010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8840573057007874708
 PrefabInstance:
   m_ObjectHideFlags: 0

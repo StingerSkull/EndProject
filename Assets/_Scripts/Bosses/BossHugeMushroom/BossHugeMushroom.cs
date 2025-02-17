@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 using UnityHFSM;
 
@@ -28,6 +29,7 @@ public class BossHugeMushroom : MonoBehaviour
     public float pushForceY = 0.5f;
     public bool canFlip;
     public bool dead;
+    public UnityEvent onDeath;
 
     [Header("Big Mushroom Spawn")]
     public Transform bigSpawner;
@@ -303,7 +305,10 @@ public class BossHugeMushroom : MonoBehaviour
         return _hit ? (int)(Mathf.Abs(_hit.point.x - transform.position.x) / distanceBetweenMush) : numMushrooms;
     }
 
-
+    public void OnDestroy()
+    {
+        onDeath.Invoke();
+    }
 
     private void OnDrawGizmos()
     {

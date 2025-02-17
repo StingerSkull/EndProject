@@ -205,16 +205,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -5, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -255,25 +245,15 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: cf2e19a79bfbc774db5478186de3d717, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: -407693436, guid: a572fd469101de74ca03d9d58a746c06, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data:
       e00: 1
       e01: 0
@@ -292,7 +272,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -425,7 +405,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: -1, y: -1, z: 0}
+  - first: {x: -2, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -445,7 +425,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: -1, y: 0, z: 0}
+  - first: {x: -2, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -692,26 +672,26 @@ CompositeCollider2D:
         Y: -10000000
       - X: -40937500
         Y: -10000000
-    - - X: 0
+    - - X: -10000000
         Y: -9687500
-      - X: 0
-        Y: 10000000
       - X: -10000000
         Y: 10000000
-      - X: -10000000
+      - X: -20000000
+        Y: 10000000
+      - X: -20000000
         Y: -8437500
-      - X: -9375000
+      - X: -19375000
         Y: -10000000
-      - X: -937500
+      - X: -10937500
         Y: -10000000
   m_CompositePaths:
     m_Paths:
-    - - {x: -0.0937542, y: -1}
-      - {x: 0, y: -0.96873003}
-      - {x: -0.000029300001, y: 1}
-      - {x: -1, y: 0.99997073}
-      - {x: -0.9999982, y: -0.8437546}
-      - {x: -0.9374815, y: -1}
+    - - {x: -1.0937542, y: -1}
+      - {x: -1, y: -0.96873003}
+      - {x: -1.0000293, y: 1}
+      - {x: -2, y: 0.99997073}
+      - {x: -1.9999982, y: -0.8437546}
+      - {x: -1.9374816, y: -1}
     - - {x: -4.0937543, y: -1}
       - {x: -4, y: -0.96873003}
       - {x: -4.000029, y: 1}
@@ -734,7 +714,7 @@ GameObject:
   - component: {fileID: 6619648060865545217}
   - component: {fileID: 6838652452647228555}
   m_Layer: 0
-  m_Name: CorridorHor
+  m_Name: CorridorHor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,12 +765,16 @@ MonoBehaviour:
   DistanceFromCorners: 1
   DoorLength: 1
   DoorsList: []
-  SelectedMode: 0
+  SelectedMode: 1
   HybridDoorModeData:
     DefaultLength: 1
     DoorLines: []
   ManualDoorModeData:
-    DoorsList: []
+    DoorsList:
+    - From: {x: -4, y: 0, z: 0}
+      To: {x: -3, y: 0, z: 0}
+    - From: {x: -4, y: -1, z: 0}
+      To: {x: -3, y: -1, z: 0}
   SimpleDoorModeData:
     DistanceFromCorners: 1
     DoorLength: 3
