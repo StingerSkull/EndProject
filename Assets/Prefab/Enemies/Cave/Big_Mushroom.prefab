@@ -324,7 +324,7 @@ MonoBehaviour:
   rb2: {fileID: 8604725484680530265}
   movementSpeed: 2
   velocity: 0
-  ledgeCheckOffset: {x: 0.3, y: -0.5}
+  ledgeCheckOffset: {x: 0.4, y: -0.5}
   ledgeCheckDistance: 0.3
   ledgeCheckLayer:
     serializedVersion: 2

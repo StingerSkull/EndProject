@@ -21,6 +21,14 @@ namespace Edgar.Unity
             virtualCamera = GameObject.Find("CinemachineCamera").GetComponent<CinemachineCamera>(); 
         }
 
+        private void Update()
+        {
+            if (tp == null)
+            {
+                tp = GameObject.Find(otherTpName).GetComponent<Teleport>();
+            }
+        }
+
         public void InteractTp()
         {
             if (!tp.activated)

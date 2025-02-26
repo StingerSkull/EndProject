@@ -1027,10 +1027,7 @@ public class Movement2D : MonoBehaviour
     {
 
         runDust.SetActive((isGrounded || isDashing) && Mathf.Abs(currentHorizontalSpeed) > 0 && input.x != 0);
-        if (currentVerticalSpeed > 7.1f)
-        {
-            Debug.Log("MOVE : " + currentVerticalSpeed);
-        }
+
         rb2.linearVelocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed);
 
     }

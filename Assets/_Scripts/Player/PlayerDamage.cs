@@ -51,17 +51,22 @@ public class PlayerDamage : MonoBehaviour
     }
     
     public void PlayerDmg(int dmg)
-    {      
-        currentLife -= dmg;
-        if (currentLife > 0)
+    {
+        if (hurtTimer <= 0f)
         {
-            playerHurt.Invoke();
+            currentLife -= dmg;
+            if (currentLife > 0)
+            {
+                animator.SetTrigger("Hurt");
+                playerHurt.Invoke();
+            }
+            else
+            {
+                playerDeath.Invoke();
+            }
+            ResetAnimationTriggers();
+            hurtTimer = hurtCooldown;
         }
-        else
-        {
-            playerDeath.Invoke();
-        }
-        ResetAnimationTriggers();
     }
 
     public void ResetAnimationTriggers()

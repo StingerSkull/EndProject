@@ -6,6 +6,7 @@ public class FireBall : MonoBehaviour
 {
     public Rigidbody2D rb2;
     public float projectileSpeed;
+    public int damage; 
     public float timeDespawn;
     public GameObject prefabExplosion;
     public AnimationClip explosionClip;

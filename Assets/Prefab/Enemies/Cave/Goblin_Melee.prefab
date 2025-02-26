@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3154588002984627977}
   - component: {fileID: 3334473409166198387}
   - component: {fileID: 1121879421818698170}
+  - component: {fileID: 5799816398991030920}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Enemy
@@ -246,6 +247,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5799816398991030920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342513356555731077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ae7ba8d16c7b146a8ab8e73496c2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goblinMelee: {fileID: 3349682931798887273}
+  death:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3349682931798887273}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3334473409166198387}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3154588002984627977}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4714591738468064753
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +377,15 @@ MonoBehaviour:
   rb2: {fileID: 7472797063507635177}
   movementSpeed: 2
   velocity: 0
-  ledgeCheckOffset: {x: 0.3, y: -0.5}
+  maxLife: 5
+  currentLife: 0
+  enemyHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  ledgeCheckOffset: {x: 0.4, y: -0.5}
   ledgeCheckDistance: 0.3
   ledgeCheckLayer:
     serializedVersion: 2

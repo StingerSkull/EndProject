@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4313144801901212961}
   m_Layer: 8
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2: {fileID: 8734374183024988943}
   projectileSpeed: 7
+  damage: 0
   timeDespawn: 2
   prefabExplosion: {fileID: 8857361686280433044, guid: 241382451e8e4064a9118def8393a476, type: 3}
   explosionClip: {fileID: 7400000, guid: 304b9eac8173838458658bb9fbf07017, type: 2}

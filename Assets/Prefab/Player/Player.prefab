@@ -345,6 +345,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4358c0f55816d3f40914d78e06d16d03, type: 2}
   - {fileID: 11400000, guid: 453eeb9caeb260b40b4ef49ac67030df, type: 2}
   - {fileID: 11400000, guid: 64fdfc676d92ff7469f856c84b6b34f3, type: 2}
+  - {fileID: 11400000, guid: a726cc309665ea4449db992335edf2f5, type: 2}
 --- !u!1 &8592912852885590222
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,12 +695,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c6e099073f275478652757b80d8010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 5246789730832332084}
   animator: {fileID: 8603827925250911012}
   casting: {fileID: 4522807899081119045}
   maxLife: 100
   currentLife: 0
-  hurtCooldown: 0.5
+  hurtCooldown: 1
   hurtTimer: 0
+  pushForceX: 10
+  pushForceY: 5
   playerHurt:
     m_PersistentCalls:
       m_Calls: []
@@ -769,10 +773,6 @@ PrefabInstance:
     - target: {fileID: 3099789024580711938, guid: e9d39ea4d6a62314a8409c4696bd94ab, type: 3}
       propertyPath: m_Name
       value: Dust
-      objectReference: {fileID: 0}
-    - target: {fileID: 3099789024580711938, guid: e9d39ea4d6a62314a8409c4696bd94ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -31,6 +31,7 @@ public class FireBallSpell : MonoBehaviour, ISpell
         if (chrono <=0f)
         {
             GameObject fireball = Instantiate(prefabFireball, caster.position, caster.rotation);
+            fireball.GetComponent<FireBall>().damage = fireBallData.damage;
             chrono = fireBallData.cooldown;
         }
     }

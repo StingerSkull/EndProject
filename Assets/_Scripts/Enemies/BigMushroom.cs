@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Windows;
 
 public class BigMushroom : MonoBehaviour
@@ -12,6 +13,11 @@ public class BigMushroom : MonoBehaviour
     [Range(1, 10)]
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float velocity = 0f;
+    public int maxLife = 5;
+    public int currentLife;
+
+    public UnityEvent enemyHurt;
+    public UnityEvent enemyDeath;
 
     [SerializeField] Vector2 ledgeCheckOffset = new(1f, 1f);
     [SerializeField] float ledgeCheckDistance = 1f;
@@ -28,7 +34,7 @@ public class BigMushroom : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
         facingRight = transform.right.x < 0;
-
+        currentLife = maxLife;
         isLedge = true;
     }
 
@@ -106,29 +112,48 @@ public class BigMushroom : MonoBehaviour
     #region Collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        HurtPlayer(collision);
+        if (collision.collider.CompareTag("Player"))
+        {
+            HurtPlayer(collision);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        HurtPlayer(collision);
+        if (collision.collider.CompareTag("Player"))
+        {
+            HurtPlayer(collision);
+        }
     }
 
     #endregion
 
     void HurtPlayer(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        GameObject player = collision.gameObject;
+        if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
         {
-            GameObject player = collision.gameObject;
-            if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
-            {
-                player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
-                player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
-                player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
-            }
+            player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
+            player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
+            player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
         }
     }
+
+    public void EnemyDmg(int dmg)
+    {
+            currentLife -= dmg;
+            if (currentLife > 0)
+            {
+                animator.SetTrigger("Hurt");
+                enemyHurt.Invoke();
+            }
+            else
+            {
+                enemyDeath.Invoke();
+            }
+
+    }
+
     private void OnDrawGizmos()
     {
 
