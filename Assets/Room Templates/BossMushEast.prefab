@@ -229,7 +229,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 14
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -255,11 +255,21 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
+  - first: {x: 14, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 14
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741826
   - first: {x: 15, y: -4, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -497,14 +507,14 @@ Tilemap:
       m_AllTileFlags: 1073741826
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 45
+  - m_RefCount: 46
     m_Data: {fileID: 11400000, guid: c37f22b46b0ca22479f743b843e925c0, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 9
+  - m_RefCount: 8
     m_Data: {fileID: 1129281053, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -516,11 +526,11 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1853772756, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1309146034, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -1440309561, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 428853230, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
@@ -531,7 +541,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -8213782765776912250, guid: 0fa79dd22be1fdc43ad22a91374bd3e2, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 45
+  - m_RefCount: 46
     m_Data:
       e00: 1
       e01: 0
@@ -550,7 +560,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 45
+  - m_RefCount: 46
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -753,11 +763,11 @@ CompositeCollider2D:
       - X: 150000000
         Y: 0
       - X: 150000000
-        Y: -40000000
+        Y: -30000000
       - X: 140312496
-        Y: -40000000
+        Y: -30000000
       - X: 140000000
-        Y: -40312500
+        Y: -30312500
       - X: 140000000
         Y: -50000000
   m_CompositePaths:
@@ -772,9 +782,9 @@ CompositeCollider2D:
       - {x: 0, y: -4.9999704}
       - {x: 0.0000294, y: 0}
       - {x: 15, y: -0.0000294}
-      - {x: 14.999971, y: -4}
-      - {x: 14.031241, y: -4.0000076}
-      - {x: 14, y: -4.031261}
+      - {x: 14.999971, y: -3}
+      - {x: 14.031241, y: -3.0000076}
+      - {x: 14, y: -3.0312607}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -1108,8 +1118,8 @@ MonoBehaviour:
       Length: 5
   ManualDoorModeData:
     DoorsList:
-    - From: {x: 15, y: -4, z: 0}
-      To: {x: 15, y: -3, z: 0}
+    - From: {x: 15, y: -3, z: 0}
+      To: {x: 15, y: -2, z: 0}
   SimpleDoorModeData:
     DistanceFromCorners: 1
     DoorLength: 5
@@ -2880,10 +2890,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8186901279367823273}
     m_Modifications:
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 2497431481015670675}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6981799147874524691, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: enemyDeath.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 67304506294843520, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 67304506294843520, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2497431481015670675}
+    - target: {fileID: 67304506294843520, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 67304506294843520, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5072238002484739578, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
       propertyPath: m_Name
       value: BossHuge_Mushroom

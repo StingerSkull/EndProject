@@ -48,4 +48,15 @@ public class GetBossHugeMushAnimationEvents : MonoBehaviour
         endSpawn.Invoke();
     }
 
+    public void Hurt()
+    {
+        boss.hurt = true;        
+    }
+
+    public void EndHurt()
+    {
+        boss.endHurt = true;
+        boss.canFlip = true;
+    }
+
 }

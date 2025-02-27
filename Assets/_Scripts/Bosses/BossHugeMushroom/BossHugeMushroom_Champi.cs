@@ -32,8 +32,7 @@ public class BossHugeMushroom_Champi : MonoBehaviour
             GameObject player = collider.transform.parent.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-                Debug.Log("aie");
-                player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
+                player.GetComponent<PlayerDamage>().DealDmg(1);
                 player.GetComponent<Movement2D>().currentVerticalSpeed = pushForceY;
             }
         }

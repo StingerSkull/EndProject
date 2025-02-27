@@ -10,7 +10,7 @@ public class Spikes : MonoBehaviour
             GameObject player = collision.transform.parent.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-               player.GetComponent<PlayerDamage>().PlayerDmg(1);
+               player.GetComponent<PlayerDamage>().DealDmg(1);
             }
         }
     }
@@ -22,7 +22,7 @@ public class Spikes : MonoBehaviour
             GameObject player = collision.transform.parent.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-                player.GetComponent<PlayerDamage>().PlayerDmg(1);
+                player.GetComponent<PlayerDamage>().DealDmg(1);
             }
         }
     }

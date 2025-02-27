@@ -138,10 +138,10 @@ TextureImporter:
       name: Big_Mushroom_death_0
       rect:
         serializedVersion: 2
-        x: 15
+        x: 0
         y: 0
-        width: 26
-        height: 32
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: Big_Mushroom_death_1
       rect:
         serializedVersion: 2
-        x: 57
+        x: 42
         y: 0
-        width: 28
-        height: 34
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: Big_Mushroom_death_2
       rect:
         serializedVersion: 2
-        x: 99
+        x: 84
         y: 0
-        width: 26
-        height: 32
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: Big_Mushroom_death_3
       rect:
         serializedVersion: 2
-        x: 141
+        x: 126
         y: 0
-        width: 26
-        height: 29
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 78183470532cc6c43a1930e97ab0f563
     internalID: 0
     vertices: []
     indices: 

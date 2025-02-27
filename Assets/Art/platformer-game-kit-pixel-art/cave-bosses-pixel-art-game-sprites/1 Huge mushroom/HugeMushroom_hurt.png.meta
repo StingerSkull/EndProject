@@ -138,10 +138,10 @@ TextureImporter:
       name: HugeMushroom_hurt_0
       rect:
         serializedVersion: 2
-        x: 27
+        x: 0
         y: 0
-        width: 44
-        height: 63
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: HugeMushroom_hurt_1
       rect:
         serializedVersion: 2
-        x: 100
+        x: 72
         y: 0
-        width: 45
-        height: 64
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: HugeMushroom_hurt_2
       rect:
         serializedVersion: 2
-        x: 171
+        x: 144
         y: 0
-        width: 46
-        height: 63
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: HugeMushroom_hurt_3
       rect:
         serializedVersion: 2
-        x: 242
+        x: 216
         y: 0
-        width: 46
-        height: 63
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1885ca3ec5e643145a5d05ce474b19bf
     internalID: 0
     vertices: []
     indices: 

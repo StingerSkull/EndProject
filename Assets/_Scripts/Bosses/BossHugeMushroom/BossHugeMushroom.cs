@@ -10,7 +10,7 @@ public class BossHugeMushroom : MonoBehaviour
     public StateMachine<BossHugeMushroomStates> fsm;
     public enum BossHugeMushroomStates
     {
-        IDLE, MOVE, HOME, MELEEATTACK, MUSHROOMATTACK, SPAWN, DEAD
+        IDLE, MOVE, HOME, MELEEATTACK, MUSHROOMATTACK, SPAWN, HURT, DEAD
     }
 
     [Header("Boss Components")]
@@ -19,8 +19,7 @@ public class BossHugeMushroom : MonoBehaviour
     public Rigidbody2D rb2;
 
     [Header("Boss stats")]
-    public int maxLife = 5;
-    public int currentLife;
+    public EnemyDamage enemyDmg;
     [Range(1, 10)]
     public float movementSpeed = 2.5f;
     public float currentMovementSpeed = 0f;
@@ -59,6 +58,9 @@ public class BossHugeMushroom : MonoBehaviour
     public float pauseTimer = 2f;
     public float pauseChrono = 0f;
     public int rdmSkill = 0;
+    public bool hurt;
+    public bool endHurt;
+    public bool enrage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,12 +68,13 @@ public class BossHugeMushroom : MonoBehaviour
         player = GameObject.Find("Player");
         rb2 = GetComponent<Rigidbody2D>();
         canFlip = true;
-        currentLife = maxLife;
         fsm = new StateMachine<BossHugeMushroomStates>();
         home = transform;
         rdmSkill = 1;
         animMushroomAttack = false;
         endAnimMushroomAttack= false;
+        hurt = false;
+        enrage = false;
 
 
     #region States
@@ -81,6 +84,7 @@ public class BossHugeMushroom : MonoBehaviour
         fsm.AddState(BossHugeMushroomStates.MELEEATTACK, new BossHugeMushroomMeleeAttackState<BossHugeMushroomStates>(this));
         fsm.AddState(BossHugeMushroomStates.MUSHROOMATTACK, new BossHugeMushroomMushroomAttackState<BossHugeMushroomStates>(this));
         fsm.AddState(BossHugeMushroomStates.SPAWN, new BossHugeMushroomSpawnState<BossHugeMushroomStates>(this));
+        fsm.AddState(BossHugeMushroomStates.HURT, new BossHugeMushroomHurtState<BossHugeMushroomStates>(this));
         fsm.AddState(BossHugeMushroomStates.DEAD, new BossHugeMushroomDeadState<BossHugeMushroomStates>(this));
         #endregion
 
@@ -174,7 +178,24 @@ public class BossHugeMushroom : MonoBehaviour
             transition => Vector2.Distance(transform.position, home.position) <= 0.1f);
         #endregion
 
+        #region HURT
+        fsm.AddTransition(BossHugeMushroomStates.HURT, BossHugeMushroomStates.IDLE,
+            transition => endHurt
+            && (Vector2.Distance(transform.position, player.transform.position) > detectRange
+            || (Vector2.Distance(transform.position, player.transform.position) <= attackRange
+            && CheckAttackRange())));
+        fsm.AddTransition(BossHugeMushroomStates.HURT, BossHugeMushroomStates.MOVE,
+            transition => endHurt
+            && Vector2.Distance(transform.position, player.transform.position) <= detectRange
+            && CheckDetectRange()
+            && Vector2.Distance(transform.position, player.transform.position) > attackRange
+            && pauseChrono <= 0);
+
+        #endregion
+
         #region ALL
+        fsm.AddTransitionFromAny(BossHugeMushroomStates.HURT,
+            transition => hurt);
         fsm.AddTransitionFromAny(BossHugeMushroomStates.DEAD,
             transition => dead);
 
@@ -190,6 +211,11 @@ public class BossHugeMushroom : MonoBehaviour
         if (pauseChrono > 0f)
         {
             pauseChrono -= Time.deltaTime;
+        }
+        if (!enrage && enemyDmg.currentLife <= enemyDmg.maxLife / 2)
+        {
+            enrage = true;
+            pauseTimer = Mathf.Max(pauseTimer/2f, 1f); 
         }
         fsm.OnLogic();
     }
@@ -275,7 +301,7 @@ public class BossHugeMushroom : MonoBehaviour
             GameObject player = collision.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-                player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
+                player.GetComponent<PlayerDamage>().DealDmg(1);
                 player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
                 player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
             }

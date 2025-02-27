@@ -1,11 +1,9 @@
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerDamage : MonoBehaviour, IDamage
+public class EnemyDamage : MonoBehaviour, IDamage
 {
     public Animator animator;
-    public Casting casting;
 
     public int maxLife = 5;
     public int currentLife;
@@ -13,10 +11,9 @@ public class PlayerDamage : MonoBehaviour, IDamage
     public float hurtCooldown = 0.5f;
     public float hurtTimer = 0f;
 
-    public UnityEvent playerHurt;
-    public UnityEvent playerDeath;
+    public UnityEvent enemyHurt;
+    public UnityEvent enemyDeath;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentLife = maxLife;
@@ -39,22 +36,15 @@ public class PlayerDamage : MonoBehaviour, IDamage
             if (currentLife > 0)
             {
                 animator.SetTrigger("Hurt");
-                playerHurt.Invoke();
+                enemyHurt.Invoke();
             }
             else
             {
-                playerDeath.Invoke();
+                animator.SetTrigger("Death");
+                enemyDeath.Invoke();
             }
-            ResetAnimationTriggers();
             hurtTimer = hurtCooldown;
         }
-    }
-
-    public void ResetAnimationTriggers()
-    {
-        animator.ResetTrigger("Cast");
-        casting.ResetAllAnimCast();
-        animator.ResetTrigger("Jump");
     }
 
     public bool InHurtCoolDown()

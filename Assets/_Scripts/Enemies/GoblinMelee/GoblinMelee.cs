@@ -13,11 +13,6 @@ public class GoblinMelee : MonoBehaviour
     [Range(1, 10)]
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float velocity = 0f;
-    public int maxLife = 5;
-    public int currentLife;
-
-    public UnityEvent enemyHurt;
-    public UnityEvent enemyDeath;
 
     [SerializeField] Vector2 ledgeCheckOffset = new(1f, 1f);
     [SerializeField] float ledgeCheckDistance = 1f;
@@ -34,7 +29,6 @@ public class GoblinMelee : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
         facingRight = transform.right.x < 0;
-        currentLife = maxLife;
         isLedge = true;
     }
 
@@ -72,6 +66,10 @@ public class GoblinMelee : MonoBehaviour
         }
     }
 
+    void ResetMovement()
+    {
+        velocity = 0;
+    }
     void Flip()
     {
         Vector3 _enemyRot = transform.localEulerAngles;
@@ -129,27 +127,11 @@ public class GoblinMelee : MonoBehaviour
             GameObject player = collision.gameObject;
             if (!player.GetComponent<PlayerDamage>().InHurtCoolDown())
             {
-                player.GetComponent<PlayerDamage>().PlayerEnemyDmg(1);
+                player.GetComponent<PlayerDamage>().DealDmg(1);
                 player.GetComponent<Movement2D>().currentHorizontalSpeed = -collision.GetContact(0).normal.x * pushForceX;
                 player.GetComponent<Movement2D>().currentVerticalSpeed = -collision.GetContact(0).normal.y * pushForceY;
             }
         }
-    }
-
-    public void EnemyDmg(int dmg)
-    {
-        currentLife -= dmg;
-        if (currentLife > 0)
-        {
-            animator.SetTrigger("Hurt");
-            enemyHurt.Invoke();
-        }
-        else
-        {
-            animator.SetTrigger("Death");
-            enemyDeath.Invoke();
-        }
-
     }
 
     private void OnDrawGizmos()

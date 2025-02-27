@@ -31,7 +31,9 @@ public class FireBall : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Destroy(collision.transform.parent.gameObject);
+            GameObject enemy = collision.transform.parent.gameObject;
+            enemy.GetComponent<EnemyDamage>().DealDmg(damage);
+
             GameObject explosionEffectEnemy = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
             Destroy(explosionEffectEnemy, explosionDuration);
             Destroy(gameObject);
