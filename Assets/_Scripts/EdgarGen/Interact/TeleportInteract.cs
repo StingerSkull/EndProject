@@ -7,16 +7,13 @@ namespace Edgar.Unity
         public Teleport teleport;
         public override void BeginInteract()
         {
-            ShowText("Press E to teleport back");
+            ShowText("Press interact to teleport back");
         }
 
         public override void Interact()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //Teleport and activate
-                teleport.InteractTp();
-            }
+            //Teleport and activate
+            teleport.InteractTp();
         }
 
         public override void EndInteract()

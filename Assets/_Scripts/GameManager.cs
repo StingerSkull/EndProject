@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject losePanel;
     public GameObject pauseBtn;
     public GameObject player;
+    public GameObject spellCd;
     public AudioSource audioSource;
 
     public TextMeshProUGUI textTime; 
@@ -26,11 +27,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pausePanel.SetActive(isPaused);
+        spellCd.SetActive(!isPaused);
         winPanel.SetActive(false);
         losePanel.SetActive(false);
 
         chrono = 0;
-        textTime.text = "0";
+        if (textTime != null)
+        {
+            textTime.text = "0";
+        }
     }
 
     private void Update()
@@ -39,10 +44,13 @@ public class GameManager : MonoBehaviour
         {
             chrono += Time.deltaTime;
         }
-        float min = Mathf.FloorToInt(chrono / 60);
-        float sec = Mathf.FloorToInt(chrono % 60);
-        float milli = (chrono - (min * 60 + sec)) * 1000;
-        textTime.text = string.Format("{0:00}:{1:00}:{2:000}", min, sec,milli); ;
+        if (textTime != null)
+        {  
+            float min = Mathf.FloorToInt(chrono / 60);
+            float sec = Mathf.FloorToInt(chrono % 60);
+            float milli = (chrono - (min * 60 + sec)) * 1000;
+            textTime.text = string.Format("{0:00}:{1:00}:{2:000}", min, sec,milli); ;
+        }
     }
 
     public void Pause()
@@ -51,7 +59,9 @@ public class GameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             pausePanel.SetActive(isPaused);
-            
+            spellCd.SetActive(!isPaused);
+
+
             if (isPaused)
             {
                 Time.timeScale = 0f;

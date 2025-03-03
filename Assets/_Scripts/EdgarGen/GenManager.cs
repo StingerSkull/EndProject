@@ -8,18 +8,11 @@ namespace Edgar.Unity
     /// </summary>
     public class GenManager : GameManagerBase<GenManager>
     {
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                LoadNextLevel();
-            }
-        }
 
         public override void LoadNextLevel()
         {
             // Show loading screen
-            ShowLoadingScreen("Example 1", "loading..");
+            ShowLoadingScreen("Next Level", "loading..");
 
             // Find the generator runner
             var generator = GameObject.Find("Generator").GetComponent<DungeonGeneratorGrid2D>();

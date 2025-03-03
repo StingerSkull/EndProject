@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 namespace Edgar.Unity
 {
@@ -8,6 +12,7 @@ namespace Edgar.Unity
     public class PlayerInteract : MonoBehaviour
     {
         private IInteractable interactableInFocus;
+        private bool interacting;
 
         /// <summary>
         /// If an interactable object is in focus and is allowed to interact, call its Interact() method.
@@ -18,7 +23,11 @@ namespace Edgar.Unity
             {
                 if (interactableInFocus.IsInteractionAllowed())
                 {
-                    interactableInFocus.Interact();
+                    if (interacting)
+                    {
+                        interactableInFocus.Interact();
+                        interacting = false;
+                    }
                 }
                 else
                 {
@@ -60,6 +69,27 @@ namespace Edgar.Unity
             {
                 interactableInFocus?.EndInteract();
                 interactableInFocus = null;
+            }
+        }
+
+        public void InputInteract(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Disabled:
+                    break;
+                case InputActionPhase.Waiting:
+                    break;
+                case InputActionPhase.Started:
+                    break;
+                case InputActionPhase.Performed:
+                    interacting = true;
+                    break;
+                case InputActionPhase.Canceled:
+                    interacting = false;
+                    break;
+                default:
+                    break;
             }
         }
     }

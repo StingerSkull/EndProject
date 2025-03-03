@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Edgar.Unity
 {
     /// <summary>
@@ -9,15 +10,12 @@ namespace Edgar.Unity
 
         public override void BeginInteract()
         {
-            ShowText("Press E to exit the level");
+            ShowText("Press interact to exit the level");
         }
 
         public override void Interact()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                GenManager.Instance.LoadNextLevel();
-            }
+            GenManager.Instance.LoadNextLevel();
         }
 
         public override void EndInteract()
