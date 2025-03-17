@@ -14,10 +14,10 @@ public class GoblinMelee : MonoBehaviour
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float velocity = 0f;
 
-    [SerializeField] Vector2 ledgeCheckOffset = new(1f, 1f);
-    [SerializeField] float ledgeCheckDistance = 1f;
-    [SerializeField] LayerMask ledgeCheckLayer;
-    public bool isLedge;
+    [Header("Player detection")]
+    public GameObject player;
+    public LayerMask collisionLayer;
+    public float detectRange = 4f;
 
     public bool facingRight;
 
@@ -27,15 +27,8 @@ public class GoblinMelee : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
         rb2 = GetComponent<Rigidbody2D>();
-        facingRight = transform.right.x < 0;
-        isLedge = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckLedgeAndWall();
     }
 
     private void FixedUpdate()
@@ -48,21 +41,15 @@ public class GoblinMelee : MonoBehaviour
     #region Move
     void UpdatePlatformerSpeed()
     {
-        if (!facingRight && isLedge)
+        if (CheckDetectRange())
         {
-            velocity = -movementSpeed;
+            Vector2 angleVector = (player.transform.position - transform.position);
+
+            velocity = angleVector.normalized.x * movementSpeed;
         }
-        else if (!facingRight && !isLedge)
+        else
         {
-            velocity = movementSpeed;
-        }
-        else if (facingRight && isLedge)
-        {
-            velocity = movementSpeed;
-        }
-        else if (facingRight && !isLedge)
-        {
-            velocity = -movementSpeed;
+            velocity = 0;
         }
     }
 
@@ -70,6 +57,7 @@ public class GoblinMelee : MonoBehaviour
     {
         velocity = 0;
     }
+
     void Flip()
     {
         Vector3 _enemyRot = transform.localEulerAngles;
@@ -91,21 +79,10 @@ public class GoblinMelee : MonoBehaviour
     void Move()
     {
         animator.SetFloat("MovementSpeed", Mathf.Abs(rb2.linearVelocityX));
-        rb2.linearVelocityX = velocity; 
+        rb2.linearVelocityX = velocity;
     }
     #endregion
 
-    #region Ledge
-    void CheckLedgeAndWall()
-    {
-        //CHECH THE LEDGE
-        Vector2 _ledgeCheckOrigin = (Vector2)transform.position - (Vector2)transform.right * ledgeCheckOffset.x + (Vector2)transform.up * ledgeCheckOffset.y;
-        RaycastHit2D _hit = Physics2D.Raycast(_ledgeCheckOrigin, Vector2.down, ledgeCheckDistance, ledgeCheckLayer);
-
-        isLedge = _hit;
-
-    }
-    #endregion
 
     #region Collider
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,7 +91,7 @@ public class GoblinMelee : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    { 
+    {
         HurtPlayer(collision);
     }
 
@@ -134,22 +111,31 @@ public class GoblinMelee : MonoBehaviour
         }
     }
 
+    public bool CheckDetectRange()
+    {
+        bool detected = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, detectRange, collisionLayer);
+        if (hit)
+        {
+            detected = hit.transform.CompareTag("Player");
+        }
+        return detected;
+    }
+
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
 
-        if (isLedge)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
+        if (player != null)
         {
             Gizmos.color = Color.red;
+            if (CheckDetectRange())
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * detectRange);
+
         }
-        Vector2 _ledgeCheckOrigin = (Vector2)transform.position - (Vector2)transform.right * ledgeCheckOffset.x + (Vector2)transform.up * ledgeCheckOffset.y;
-
-
-        Gizmos.DrawRay(_ledgeCheckOrigin, Vector2.down * ledgeCheckDistance);
-
-
     }
 }

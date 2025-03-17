@@ -22,7 +22,7 @@ public class BossHugeMushroomSpawnState<T> : StateBase<BossHugeMushroom.BossHuge
     {
         if (_boss.animSpawn)
         {
-            GameObject.Instantiate(_boss.prefabBig, _boss.bigSpawner.position, _boss.bigSpawner.rotation);
+            GameObject.Instantiate(_boss.prefabBig, _boss.bigSpawner.position, _boss.bigSpawner.rotation, _boss.transform.parent);
             _boss.animSpawn = false;
         }
     }

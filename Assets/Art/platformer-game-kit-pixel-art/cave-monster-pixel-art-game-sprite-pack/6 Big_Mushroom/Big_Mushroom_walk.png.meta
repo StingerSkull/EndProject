@@ -148,8 +148,8 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -170,8 +170,8 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -192,8 +192,8 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -214,8 +214,8 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,16 +236,16 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 43064e6ba1e5753b0800000000000000
-      internalID: -5523842949116043212
+      spriteID: 4e549271e0eb99e46b463fef2367cc06
+      internalID: -1714325722
       vertices: []
       indices: 
       edges: []
@@ -258,16 +258,16 @@ TextureImporter:
         y: 0
         width: 42
         height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 144bc0b1a12ee36b0800000000000000
-      internalID: -5314561908499762111
+      spriteID: be0d4aef9a9bdcb4a90b3578877cbb1c
+      internalID: 2058182396
       vertices: []
       indices: 
       edges: []
@@ -290,8 +290,8 @@ TextureImporter:
       Big_Mushroom_walk_1: 2402210167645047688
       Big_Mushroom_walk_2: -9189504533786687846
       Big_Mushroom_walk_3: 1099164169261529908
-      Big_Mushroom_walk_4: -5523842949116043212
-      Big_Mushroom_walk_5: -5314561908499762111
+      Big_Mushroom_walk_4: -1714325722
+      Big_Mushroom_walk_5: 2058182396
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

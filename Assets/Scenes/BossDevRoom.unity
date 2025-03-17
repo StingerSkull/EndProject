@@ -119,67 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &270959306
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6832325574554894529, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_Name
-      value: Big_Mushroom
-      objectReference: {fileID: 0}
-    - target: {fileID: 6832325574554894529, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.578
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.344
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695974315775011233, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 524c42502e105b7468a5ea883bcb23cb, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,6 +2553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHugeMushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 7576208060419908754, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4900747841287639866, guid: 7f3b3874f17822b4e84b3f06cb2a3090, type: 3}
     - target: {fileID: 8890947045818067881, guid: dee0d2b9a101d4f49a3b1dbf604dcf42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.2
@@ -3233,4 +3176,3 @@ SceneRoots:
   - {fileID: 6692399141429334249}
   - {fileID: 7275572782701243013}
   - {fileID: 4225609253188226539}
-  - {fileID: 270959306}

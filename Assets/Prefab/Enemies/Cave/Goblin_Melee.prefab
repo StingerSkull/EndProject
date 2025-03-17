@@ -147,7 +147,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.22723484, y: -0.1991874}
+  m_Offset: {x: 0, y: -0.1991874}
   m_Size: {x: 0.6946764, y: 0.91748595}
   m_Direction: 0
 --- !u!82 &1121879421818698170
@@ -342,12 +342,11 @@ MonoBehaviour:
   rb2: {fileID: 7472797063507635177}
   movementSpeed: 2
   velocity: 0
-  ledgeCheckOffset: {x: 0.4, y: -0.5}
-  ledgeCheckDistance: 0.3
-  ledgeCheckLayer:
+  player: {fileID: 0}
+  collisionLayer:
     serializedVersion: 2
-    m_Bits: 1
-  isLedge: 0
+    m_Bits: 9
+  detectRange: 4
   facingRight: 0
   pushForceX: 10
   pushForceY: 5
@@ -364,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3154588002984627977}
-  maxLife: 2
+  maxLife: 1
   currentLife: 0
   hurtCooldown: 0
   hurtTimer: 0

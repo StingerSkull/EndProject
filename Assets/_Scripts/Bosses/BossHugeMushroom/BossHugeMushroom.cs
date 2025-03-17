@@ -28,7 +28,6 @@ public class BossHugeMushroom : MonoBehaviour
     public float pushForceY = 0.5f;
     public bool canFlip;
     public bool dead;
-    public UnityEvent onDeath;
 
     [Header("Big Mushroom Spawn")]
     public Transform bigSpawner;
@@ -329,11 +328,6 @@ public class BossHugeMushroom : MonoBehaviour
         RaycastHit2D _hit = Physics2D.Raycast(rayOrigin, -transform.right, numMushrooms * distanceBetweenMush, mushCheckLayer);
 
         return _hit ? (int)(Mathf.Abs(_hit.point.x - transform.position.x) / distanceBetweenMush) : numMushrooms;
-    }
-
-    public void OnDestroy()
-    {
-        onDeath.Invoke();
     }
 
     private void OnDrawGizmos()
